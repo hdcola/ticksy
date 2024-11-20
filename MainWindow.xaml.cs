@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ticksy.Dialogs;
 
 namespace ticksy
 {
@@ -23,6 +24,17 @@ namespace ticksy
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void BtnTestDatabaseConn_OnClick(object sender, RoutedEventArgs e)
+        {
+            DbConfigDialog dialog = new DbConfigDialog();
+            dialog.Owner = this;
+
+            if (dialog.ShowDialog() == true)
+            {
+                // Do something with the data
+            }
         }
     }
 }
