@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,9 +22,13 @@ namespace ticksy
     /// </summary>
     public partial class MainWindow : Window
     {
+        private int count = 0;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            txtCount.Text = count.ToString();
         }
 
         private void BtnTestDatabaseConn_OnClick(object sender, RoutedEventArgs e)
@@ -35,6 +40,12 @@ namespace ticksy
             {
                 // Do something with the data
             }
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            count++;
+            txtCount.Text = count.ToString();
         }
     }
 }
