@@ -18,6 +18,7 @@ entity projects {
   userId : bigint(20) <<FK>>
   name : varchar(100)
   description : text
+  hourlyRate: decimal(10,2)
   archived : boolean
   createdAt : datetime
   updatedAt : datetime
