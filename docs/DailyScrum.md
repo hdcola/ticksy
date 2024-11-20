@@ -11,7 +11,7 @@
 - ER digram and use case diagram, created SQL database in Microsoft Azure
 
 2. To do until next scrum
-   -Research Material Design to start creating dialogs
+- Research Material Design to start creating dialogs
 3. Need assistance with
 
 -
