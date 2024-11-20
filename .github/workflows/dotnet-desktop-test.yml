@@ -90,8 +90,8 @@ jobs:
 
     - name: Test .NET Framework
       run: |
-          $testDllPath = "{0}\bin\{1}\{0}.dll" -f $env:Test_Project_Name, $env:Configuration
-          & "${{ steps.setup-msbuild.outputs.msbuild-path }}\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" $testDllPath
+        $testDllPath = Join-Path -Path $env:Test_Project_Name -ChildPath "bin\$env:Configuration\$env:Test_Project_Name.dll"
+        & "${{ steps.setup-msbuild.outputs.msbuild-path }}\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" $testDllPath
       env:
         Configuration: ${{ matrix.configuration }}
 
