@@ -36,7 +36,7 @@
 # For a complete CI/CD sample to get started with GitHub Action workflows for Desktop Applications,
 # refer to https://github.com/microsoft/github-actions-for-desktop-apps
 
-name: .NET Core Desktop
+name: .NET Framework Desktop Test
 
 on:
   push:
@@ -73,15 +73,15 @@ jobs:
       uses: nuget/setup-nuget@v1
 
     - name: Restore dependencies
-      run: nuget restore $env:Solution_Name
+      run: nuget restore %Solution_Name
 
     - name: Build
-      run: msbuild $env:Solution_Name /p:Configuration=$env:Configuration
+      run: msbuild %Solution_Name% /p:Configuration=%Configuration%
       env:
         Configuration: ${{ matrix.configuration }}
 
     - name: Test .NET Framework
-      run: vstest.console.exe $env.Test_Project_Name\bin\$env:Configuration\$env.Test_Project_Name.dll
+      run: vstest.console.exe %Test_Project_Name%\bin\%Configuration%\%Test_Project_Name%.dll
       env:
         Configuration: ${{ matrix.configuration }}
 
