@@ -73,15 +73,19 @@ jobs:
       uses: nuget/setup-nuget@v1
 
     - name: Restore dependencies
-      run: nuget restore %Solution_Name
+      run: nuget restore $env:Solution_Name
 
     - name: Build
-      run: msbuild %Solution_Name% /p:Configuration=%Configuration%
+      run: msbuild $env:Solution_Name /p:Configuration=$env:Configuration
       env:
         Configuration: ${{ matrix.configuration }}
 
+    - name: Check vstest.console.exe location
+      run: |
+        where vstest.console.exe
+
     - name: Test .NET Framework
-      run: vstest.console.exe %Test_Project_Name%\bin\%Configuration%\%Test_Project_Name%.dll
+      run: vstest.console.exe $env.Test_Project_Name\bin\$env:Configuration\$env.Test_Project_Name.dll
       env:
         Configuration: ${{ matrix.configuration }}
 
