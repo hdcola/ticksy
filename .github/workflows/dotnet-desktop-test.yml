@@ -69,10 +69,6 @@ jobs:
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v2
 
-    # Get MSBuild installation path
-    - name: Get MSBuild Installation Path
-      run: echo "MSBuild Path: ${{ steps.setup-msbuild.outputs.msbuild-path }}"
-
     - name: Install NuGet
       uses: nuget/setup-nuget@v1
 
