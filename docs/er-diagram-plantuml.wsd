@@ -1,0 +1,51 @@
+@startuml
+' hide the spot
+' hide circle
+
+' avoid problems with angled crows feet
+entity users {
+  * userId : bigint(20) <<PK>>
+  --
+  username : varchar(50)
+  email : varchar(360)
+  password : varchar(100)
+  createdAt : datetime
+}
+
+entity projects {
+  * projectId : bigint(20) <<PK>>
+  --
+  userId : bigint(20) <<FK>>
+  name : varchar(100)
+  description : text
+  archived : boolean
+  createdAt : datetime
+  updatedAt : datetime
+}
+
+entity tasks {
+  * taskId : bigint(20) <<PK>>
+  --
+  projectId : bigint(20) <<FK>>
+  name : varchar(255)
+  description : text
+  status : enum
+  createdAt : datetime
+  updatedAt : datetime
+}
+
+entity timeEntries {
+  * timeEntryId : bigint(20) <<PK>>
+  --
+  taskId : bigint(20) <<FK>>
+  startTime : datetime
+  endTime : datetime
+  description : text
+  createdAt : datetime
+}
+
+users ||--o{ projects : owns
+projects ||--o{ tasks : has
+tasks ||--o{ timeEntries : includes
+
+@enduml
