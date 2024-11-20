@@ -34,6 +34,10 @@ With Ticksy, users can simplify payments and generate charts to show time spent 
 
 ![ER diagram](images/er-diagram.png)
 
-## Use cases
+## Use Cases
 
 ![Use cases](images/use-cases.png)
+
+## Daily Scrum
+
+Find our daily scrum meetings here [Daily scrum](docs/DailyScrum.txt)
