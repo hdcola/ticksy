@@ -1,0 +1,19 @@
+@startuml
+left to right direction
+
+actor User
+
+usecase "Log In" as UC1
+usecase "Manage Projects" as UC2
+usecase "Track Time" as UC3
+usecase "Generate Invoices" as UC5
+usecase "Generate charts" as UC6
+
+User --> UC1
+User --> UC2
+User --> UC3
+User --> UC5
+User --> UC6
+
+
+@enduml
