@@ -40,4 +40,4 @@ With Ticksy, users can simplify payments and generate charts to show time spent 
 
 ## Daily Scrum
 
-Find our daily scrum meetings [here](docs/DailyScrum.txt)
+Find our daily scrum meetings [here](docs/DailyScrum.md)
