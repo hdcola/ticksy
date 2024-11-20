@@ -49,7 +49,9 @@
 
 ##### Need assistance with
 
--   ***
+-
+
+---
 
 ### _11/21_
 
@@ -93,4 +95,6 @@
 
 ##### Need assistance with
 
--   ***
+-
+
+---
