@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ticksy.Dialogs"
         mc:Ignorable="d"
-        Title="Add Database" ResizeMode="NoResize" SizeToContent="WidthAndHeight" Loaded="Window_OnLoaded"  Background="LightGray">
+        WindowStartupLocation="CenterOwner"
+        Title="Add Database" ResizeMode="NoResize" SizeToContent="Height" Width="400" Loaded="Window_OnLoaded"  Background="LightGray">
     <Grid Margin="10 15">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition  Width="1.5*" />
+            <ColumnDefinition  Width="1*" />
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -28,7 +29,7 @@
             
             <Grid Margin="0 5 0 15" VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1.2*"/>
+                    <ColumnDefinition Width="1.5*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -36,10 +37,11 @@
                     <RowDefinition Height="35"/>
                     <RowDefinition Height="35"/>
                     <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
                 </Grid.RowDefinitions>
 
                 <Grid.Resources>
-                    <Style TargetType="{x:Type TextBox}">
+                    <Style x:Key="Textbox" TargetType="{x:Type Control}">
                         <Setter Property="Grid.Column" Value="1"/>
                         <Setter Property="Padding" Value="0 3"/>
                         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -53,22 +55,25 @@
                 
                 <!-- Server -->
                 <Label Grid.Row="0" Content="Server:" />
-                <TextBox Grid.Row="0" Name="TbxServer" />
+                <TextBox Grid.Row="0" Name="TbxServer" Style="{StaticResource Textbox}" />
                 <!-- Port -->
                 <Label  Grid.Row="1" Content="Port:" />
-                <TextBox Grid.Row="1" Name="TbxPort" Text="1433" PreviewTextInput="TbxPort_OnPreviewTextInput" />
+                <TextBox Grid.Row="1" Name="TbxPort" Text="1433" PreviewTextInput="TbxPort_OnPreviewTextInput" Style="{StaticResource Textbox}" />
                 <!-- Username -->
                 <Label  Grid.Row="2" Content="User name:" />
-                <TextBox Grid.Row="2" Name="TbxUser" />
+                <TextBox Grid.Row="2" Name="TbxUser" Style="{StaticResource Textbox}" />
                 <!-- Password -->
                 <Label Grid.Row="3" Content="Password:" />
-                <TextBox Grid.Row="3" Name="TbxPass" />
+                <PasswordBox Grid.Row="3" Name="TbxPass" Style="{StaticResource Textbox}" />
+                <!-- Database name -->
+                <Label Grid.Row="4" Content="Database name:" />
+                <TextBox Grid.Row="4" Name="TbxDbName" Style="{StaticResource Textbox}" />
             </Grid>
         </StackPanel>
         <!-- Test Connection -->
-        <Button Name="BtnTestConn" Grid.Column="0" Grid.Row="1" Content="Test Connection" Margin="0 0 10 0" HorizontalAlignment="Left" Click="BtnTestConn_OnClick"/>
+        <Button Name="BtnTestConn" Grid.Column="0" Grid.Row="1" Content="Test Connection" HorizontalAlignment="Left" Click="BtnTestConn_OnClick"/>
         <!-- Save/Cancel -->
-        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="20 0 0 0">
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Name="BtnSave" IsDefault="True" Content="Save" Margin="10 0" Click="BtnSave_OnClick" />
             <Button IsCancel="True" Content="Cancel" />
         </StackPanel>

@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Data.SqlClient;
+using System.Diagnostics;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
+using System.Xml;
+using System.Windows.Annotations.Storage;
 
 namespace ticksy.Dialogs
 {
@@ -11,6 +16,7 @@ namespace ticksy.Dialogs
     public partial class DbConfigDialog : Window
     {
         private const string DefaultPort = "1433";
+        private const string DefaultDbName = "ticksydb";
         public DbConfigDialog()
         {
             InitializeComponent();
@@ -19,6 +25,13 @@ namespace ticksy.Dialogs
         private void Window_OnLoaded(object sender, RoutedEventArgs e)
         {
             TbxPort.Text = DefaultPort;
+            TbxDbName.Text = DefaultDbName;
+        }
+
+        private void TbxPort_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            var regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
 
         private void BtnTestConn_OnClick(object sender, RoutedEventArgs e)
@@ -41,16 +54,20 @@ namespace ticksy.Dialogs
                 {
                     TbxPort.Text = DefaultPort;
                 }
+                if (TbxDbName.Text == "")
+                {
+                    TbxDbName.Text = DefaultDbName;
+                }
 
                 if (TestConnection())
                 {
-                    MessageBox.Show(this, "Test connection succeeded", "ticksy", MessageBoxButton.OK,
+                    MessageBox.Show(this, "Test connection succeeded", Globals.AppName, MessageBoxButton.OK,
                         MessageBoxImage.Information);
                 }
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(this, $"Database connection couldn't be tested: {ex.Message}", "ticksy", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(this, $"Database connection couldn't be tested: {ex.Message}", Globals.AppName, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -58,28 +75,60 @@ namespace ticksy.Dialogs
         {
             if (!TestConnection()) return;
 
-            // Save information to config file
+            // Write config.xml
+            try
+            {
+                // Get the path to the AppData folder
+                string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 
-            this.DialogResult = true;
-        }
+                // Define the file path
+                string filePath = Path.Combine(appDataPath, Globals.AppName, "config.xml");
 
-        private void TbxPort_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            var regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
+                // Ensure the directory exists
+                Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+
+                // Create the XML content
+                using (XmlWriter writer = XmlWriter.Create(filePath))
+                {
+                    writer.WriteStartDocument();
+                    writer.WriteStartElement("Settings");
+
+                    writer.WriteElementString("Server", TbxServer.Text.Trim());
+                    writer.WriteElementString("Port", TbxPort.Text.Trim());
+                    writer.WriteElementString("Username", TbxUser.Text.Trim());
+                    writer.WriteElementString("Password", TbxPass.Password.Trim());
+                    writer.WriteElementString("DatabaseName", TbxDbName.Text.Trim());
+
+                    writer.WriteEndElement();
+                    writer.WriteEndDocument();
+                }
+
+                this.DialogResult = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, $"Unable to create config.xml: {ex.Message}", Globals.AppName,
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private bool TestConnection()
         {
-            bool success = false;
+            string connStr = $@"Server={TbxServer.Text.Trim()},{TbxPort.Text.Trim()};Initial Catalog={TbxDbName.Text.Trim()};User Id={TbxUser.Text.Trim()};Password={TbxPass.Password.Trim()};Encrypt=True;Connection Timeout=30;";
 
-            // Test connection here
-
-            if (!success)
+            using (SqlConnection conn = new SqlConnection(connStr))
             {
-                MessageBox.Show(this, "Error message, failed to connect", "ticksy", MessageBoxButton.OK, MessageBoxImage.Error);
+                try
+                {
+                    conn.Open();
+                    return true;
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(this, $"Test connection failed: {ex.Message}", Globals.AppName, MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
             }
-            return success;
         }
     }
 }
