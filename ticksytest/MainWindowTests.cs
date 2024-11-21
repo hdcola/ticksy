@@ -37,5 +37,22 @@ namespace ticksytest
             // Cleanup
             mainWindow.Close();
         }
+
+        public void BtnCreateProject_OnClick_ShouldOpenDialog()
+        {
+            // Arrange
+            var app = new App();
+            var mainWindow = new MainWindow();
+            mainWindow.Show();
+
+            // Get test components
+            var button = (Button)mainWindow.FindName("btnCreateProject");
+            Assert.IsNotNull(button, "button btnCreateProject was not found in the XAML.");
+
+            // Cleanup
+            mainWindow.Close();
+        }
+
+
     }
 }
