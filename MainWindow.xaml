@@ -12,5 +12,6 @@
         <Button x:Name="btnCreateProject" Content="Create Project" Width="120" Height="36" Click="btnCreateProject_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="28,90,0,0" />
         <Button x:Name="btnAdd" Content="Add" Click="btnAdd_Click" Width="100" Height="36" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="28,150,0,0"/>
         <Button Name="btnCreateInvoice" Content="Create Invoice" Click="btnCreateInvoice_Click" Width="156" Height="36" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="360,49,0,0" />
+        <Button x:Name="btnLogin" Content="Login" Width="120" Height="36" Click="btnLogin_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="28,210,0,0" />
     </Grid>
 </Window>

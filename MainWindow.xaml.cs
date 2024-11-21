@@ -69,5 +69,17 @@ namespace ticksy
                 // Do something with the data
             }
         }
+
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            LoginMainDlg dialog = new LoginMainDlg();
+            dialog.Owner = this;
+
+            if (dialog.ShowDialog() == true)
+            {
+                // Do something with the data
+            }
+        }
     }
 }

@@ -106,6 +106,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Dialogs\LoginMainDlg.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\LoginWithEmailDlg.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\RegisterDlg.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -122,6 +134,15 @@
     </Compile>
     <Compile Include="Dialogs\CreateInvoiceDlg.xaml.cs">
       <DependentUpon>CreateInvoiceDlg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\LoginMainDlg.xaml.cs">
+      <DependentUpon>LoginMainDlg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\LoginWithEmailDlg.xaml.cs">
+      <DependentUpon>LoginWithEmailDlg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\RegisterDlg.xaml.cs">
+      <DependentUpon>RegisterDlg.xaml</DependentUpon>
     </Compile>
     <Compile Include="Globals.cs" />
     <Compile Include="MainWindow.xaml.cs">
