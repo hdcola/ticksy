@@ -7,10 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBlock Name="txtCount" Margin="166,150,558,249" Text="0" Height="36" RenderTransformOrigin="0.438,-5.118"/>
+        <TextBlock Name="txtCount" Margin="159,339,565,65" Text="0" Height="36"/>
         <Button Content="Button" HorizontalAlignment="Left" Height="36" Margin="28,36,0,0" VerticalAlignment="Top" Width="97" Click="BtnTestDatabaseConn_OnClick"/>
         <Button x:Name="btnCreateProject" Content="Create Project" Width="120" Height="36" Click="btnCreateProject_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="28,90,0,0" />
         <Button x:Name="btnAdd" Content="Add" Click="btnAdd_Click" Width="100" Height="36" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="28,150,0,0"/>
-        <Button Name="btnCreateInvoice" Content="Create Invoice" Click="btnCreateInvoice_Click" Width="156" Height="36" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="360,49,0,0" />
     </Grid>
 </Window>
