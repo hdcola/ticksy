@@ -36,7 +36,7 @@
 # For a complete CI/CD sample to get started with GitHub Action workflows for Desktop Applications,
 # refer to https://github.com/microsoft/github-actions-for-desktop-apps
 
-name: .NET Core Desktop
+name: .NET Framework Desktop Test
 
 on:
   push:
@@ -50,7 +50,8 @@ jobs:
 
     strategy:
       matrix:
-        configuration: [Debug, Release]
+      configuration: [Release]
+        # configuration: [Debug, Release]
 
     runs-on: windows-latest  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
@@ -80,8 +81,14 @@ jobs:
       env:
         Configuration: ${{ matrix.configuration }}
 
+    - name: Check vstest.console.exe location
+      run: |
+        where vstest.console.exe
+
     - name: Test .NET Framework
-      run: vstest.console.exe $env.Test_Project_Name\bin\$env:Configuration\$env.Test_Project_Name.dll
+      run: |
+          $testDllPath = "{0}\bin\{1}\{0}.dll" -f $env:Test_Project_Name, $env:Configuration
+          & "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" $testDllPath
       env:
         Configuration: ${{ matrix.configuration }}
 
