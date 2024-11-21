@@ -78,11 +78,11 @@ namespace ticksy.Dialogs
             // Write config.xml
             try
             {
-                // Get the path to the AppData folder
-                string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                // Get the path to the AppData folder 
+                string appDataPath = Globals.GetAppDataPath();
 
                 // Define the file path
-                string filePath = Path.Combine(appDataPath, Globals.AppName, "config.xml");
+                string filePath = Path.Combine(appDataPath, "config.xml");
 
                 // Ensure the directory exists
                 Directory.CreateDirectory(Path.GetDirectoryName(filePath));
