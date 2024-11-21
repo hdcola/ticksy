@@ -47,5 +47,16 @@ namespace ticksy
             count++;
             txtCount.Text = count.ToString();
         }
+
+        private void btnCreateProject_Click(object sender, RoutedEventArgs e)
+        {
+            CreateProjectDlg dialog = new CreateProjectDlg();
+            dialog.Owner = this;
+
+            if (dialog.ShowDialog() == true)
+            {
+                // Do something with the data
+            }
+        }
     }
 }
