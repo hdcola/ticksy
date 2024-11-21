@@ -1,12 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
-using System.Xml;
-using System.Windows.Annotations.Storage;
 
 namespace ticksy.Dialogs
 {
@@ -17,15 +15,27 @@ namespace ticksy.Dialogs
     {
         private const string DefaultPort = "1433";
         private const string DefaultDbName = "ticksydb";
-        public DbConfigDialog()
+
+        public DbConfigDialog(string server = "", string port = "", string username = "", string dbName = "")
         {
             InitializeComponent();
+
+            TbxServer.Text = server;
+            TbxPort.Text = port;
+            TbxUser.Text = username;
+            TbxDbName.Text = dbName;
         }
 
         private void Window_OnLoaded(object sender, RoutedEventArgs e)
         {
-            TbxPort.Text = DefaultPort;
-            TbxDbName.Text = DefaultDbName;
+            if (TbxPort.Text == "")
+            {
+                TbxPort.Text = DefaultPort;
+            }
+            if (TbxDbName.Text == "")
+            {
+                TbxDbName.Text = DefaultDbName;
+            }
         }
 
         private void TbxPort_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -67,7 +77,7 @@ namespace ticksy.Dialogs
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(this, $"Database connection couldn't be tested: {ex.Message}", Globals.AppName, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(this, $"Database connection couldn't be tested\n {ex.Message}", Globals.AppName, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -80,59 +90,73 @@ namespace ticksy.Dialogs
             {
                 // Get the path to the AppData folder 
                 string appDataPath = Globals.GetAppDataPath();
-
-                // Define the file path
                 string filePath = Path.Combine(appDataPath, "config.xml");
 
-                // Ensure the directory exists
-                Directory.CreateDirectory(Path.GetDirectoryName(filePath));
-
                 // Create the XML content
-                using (XmlWriter writer = XmlWriter.Create(filePath))
+                Configs = new Dictionary<string, string>
                 {
-                    writer.WriteStartDocument();
-                    writer.WriteStartElement("Settings");
+                    ["Server"] = TbxServer.Text.Trim(),
+                    ["Port"] = TbxPort.Text.Trim(),
+                    ["Username"] = TbxUser.Text.Trim(),
+                    ["Password"] = TbxPass.Password.Trim(),
+                    ["DatabaseName"] = TbxDbName.Text.Trim(),
+                };
 
-                    writer.WriteElementString("Server", TbxServer.Text.Trim());
-                    writer.WriteElementString("Port", TbxPort.Text.Trim());
-                    writer.WriteElementString("Username", TbxUser.Text.Trim());
-                    writer.WriteElementString("Password", TbxPass.Password.Trim());
-                    writer.WriteElementString("DatabaseName", TbxDbName.Text.Trim());
-
-                    writer.WriteEndElement();
-                    writer.WriteEndDocument();
-                }
+                XmlHelper.Create(filePath, Configs);
 
                 this.DialogResult = true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, $"Unable to create config.xml: {ex.Message}", Globals.AppName,
+                MessageBox.Show(this, $"Unable to create config.xml\n {ex.Message}", Globals.AppName,
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
+        public Dictionary<string, string> Configs { get; set; }
+
+
         private bool TestConnection()
         {
-            string connStr = $@"Server={TbxServer.Text.Trim()},{TbxPort.Text.Trim()};Initial Catalog={TbxDbName.Text.Trim()};User Id={TbxUser.Text.Trim()};Password={TbxPass.Password.Trim()};Encrypt=True;Connection Timeout=30;";
+            string connStr = BuildConnectionString(TbxServer.Text.Trim(), TbxPort.Text.Trim(), TbxUser.Text.Trim(), TbxPass.Password.Trim(), TbxDbName.Text.Trim());
 
-            using (SqlConnection conn = new SqlConnection(connStr))
+            try
             {
-                try
-                {
-                    Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait;
-                    conn.Open();
-
-                    Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow;
-                    return true;
-                }
-                catch (SqlException ex)
-                {
-                    Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow;
-                    MessageBox.Show(this, $"Test connection failed: {ex.Message}", Globals.AppName, MessageBoxButton.OK, MessageBoxImage.Error);
-                    return false;
-                }
+                Mouse.OverrideCursor = Cursors.Wait;
+                DbConnect(connStr);
+                Mouse.OverrideCursor = Cursors.Arrow;
+                return true;
             }
+            catch (SqlException ex)
+            {
+                Mouse.OverrideCursor = Cursors.Arrow;
+                MessageBox.Show(this, $"Test connection failed: {ex.Message}", Globals.AppName, MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+        }
+
+        public static void DbConnect(string connectionString)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+            }
+        }
+
+        public static string BuildConnectionString(string server, string port, string username, string password, string dbName = "", int connectionTimeout = 30)
+        {
+            return $@"Server={server},{port};User Id={username};Password={password};Initial Catalog={dbName};Encrypt=True;Connection Timeout={connectionTimeout};";
+        }
+
+        public static string BuildConnectionString(Dictionary<string, string> configs, int connectionTimeout = 30)
+        {
+            configs.TryGetValue("Server", out string server);
+            configs.TryGetValue("Port", out string port);
+            configs.TryGetValue("Username", out string username);
+            configs.TryGetValue("Password", out string password);
+            configs.TryGetValue("DatabaseName", out string dbName);
+
+            return BuildConnectionString(server, port, username, password, dbName, connectionTimeout);
         }
     }
 }

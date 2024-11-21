@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,5 +18,7 @@ namespace ticksy
             string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             return Path.Combine(appDataPath, AppName);
         }
+
+        internal static DbContext DbContext;
     }
 }
