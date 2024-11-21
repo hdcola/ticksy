@@ -88,6 +88,7 @@
     <Compile Include="Dialogs\DbConfigDialog.xaml.cs">
       <DependentUpon>DbConfigDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Globals.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
