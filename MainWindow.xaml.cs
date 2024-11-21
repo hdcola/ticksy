@@ -42,7 +42,7 @@ namespace ticksy
             {
                 MessageBox.Show(this, $"Fatal error\n {ex.Message}", Globals.AppName, MessageBoxButton.OK,
                     MessageBoxImage.Error);
-                Environment.Exit(1);
+                Environment.Exit(0);
             }
         }
 
