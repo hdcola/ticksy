@@ -120,11 +120,13 @@ namespace ticksy.Dialogs
             {
                 try
                 {
+                    Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait;
                     conn.Open();
                     return true;
                 }
                 catch (SqlException ex)
                 {
+                    Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow;
                     MessageBox.Show(this, $"Test connection failed: {ex.Message}", Globals.AppName, MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
