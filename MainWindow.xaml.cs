@@ -58,5 +58,28 @@ namespace ticksy
                 // Do something with the data
             }
         }
+
+        private void btnCreateInvoice_Click(object sender, RoutedEventArgs e)
+        {
+            CreateInvoiceDlg dialog = new CreateInvoiceDlg();
+            dialog.Owner = this;
+
+            if (dialog.ShowDialog() == true)
+            {
+                // Do something with the data
+            }
+        }
+
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            LoginMainDlg dialog = new LoginMainDlg();
+            dialog.Owner = this;
+
+            if (dialog.ShowDialog() == true)
+            {
+                // Do something with the data
+            }
+        }
     }
 }
