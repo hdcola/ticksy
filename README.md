@@ -1,6 +1,7 @@
 ![ticksy banner](images/banner.png)
 
-# Ticksy
+# Ticksy 
+### /ˈtɪk.si/
 
 ## Project description
 
