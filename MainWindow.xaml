@@ -8,8 +8,8 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <TextBlock Name="txtCount" Margin="159,339,565,65" Text="0" Height="36"/>
-        <Button x:Name="btnAdd" Content="Add" Height="36" Width="40" Click="btnAdd_Click" Margin="94,334,666,65" />
         <Button Content="Button" HorizontalAlignment="Left" Height="36" Margin="28,36,0,0" VerticalAlignment="Top" Width="97" Click="BtnTestDatabaseConn_OnClick"/>
-
+        <Button x:Name="btnCreateProject" Content="Create Project" Width="200" Height="36" Click="btnCreateProject_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="28,90,0,0" />
+        <Button x:Name="btnAdd" Content="Add" Click="btnAdd_Click" Width="100" Height="36" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="28,150,0,0"/>
     </Grid>
 </Window>
