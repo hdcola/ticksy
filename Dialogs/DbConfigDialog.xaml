@@ -3,10 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ticksy.Dialogs"
         mc:Ignorable="d"
         WindowStartupLocation="CenterOwner"
-        Title="Add Database" ResizeMode="NoResize" SizeToContent="Height" Width="400" Loaded="Window_OnLoaded"  Background="LightGray">
+        Style="{StaticResource MaterialDesignWindow}"
+        Background="White"
+        Title="Add Database" ResizeMode="NoResize" SizeToContent="Height" Width="420" Loaded="Window_OnLoaded">
     <Grid Margin="10 15">
         <Grid.ColumnDefinitions>
             <ColumnDefinition  Width="1*" />
@@ -29,53 +32,105 @@
             
             <Grid Margin="0 5 0 15" VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="1.6*"/>
                     <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
 
                 <Grid.Resources>
-                    <Style x:Key="Textbox" TargetType="{x:Type Control}">
-                        <Setter Property="Grid.Column" Value="1"/>
-                        <Setter Property="Padding" Value="0 3"/>
-                        <Setter Property="VerticalContentAlignment" Value="Center"/>
-                        <Setter Property="VerticalAlignment" Value="Center"/>
-                    </Style>
-                    <Style TargetType="{x:Type Label}">
-                        <Setter Property="Grid.Column" Value="0"/>
-                        <Setter Property="VerticalAlignment" Value="Center"/>
-                    </Style>
+                    <Thickness x:Key="MarginBottom">0 0 0 15</Thickness>
                 </Grid.Resources>
                 
                 <!-- Server -->
-                <Label Grid.Row="0" Content="Server:" />
-                <TextBox Grid.Row="0" Name="TbxServer" Style="{StaticResource Textbox}" />
+                <Label 
+                    Grid.Row="0" 
+                    Content="Server:" 
+                    Style="{DynamicResource MaterialDesignLabel}" />
+                <TextBox 
+                    Grid.Column="1" 
+                    Grid.Row="0" 
+                    Name="TbxServer" 
+                    Style="{DynamicResource MaterialDesignFilledTextBox}" 
+                    Padding="5" 
+                    Margin="{StaticResource MarginBottom}" />
                 <!-- Port -->
-                <Label  Grid.Row="1" Content="Port:" />
-                <TextBox Grid.Row="1" Name="TbxPort" Text="1433" PreviewTextInput="TbxPort_OnPreviewTextInput" Style="{StaticResource Textbox}" />
+                <Label  
+                    Grid.Row="1" 
+                    Content="Port:" 
+                    Style="{DynamicResource MaterialDesignLabel}" />
+                <TextBox 
+                    Grid.Column="1" 
+                    Grid.Row="1" 
+                    Name="TbxPort" 
+                    PreviewTextInput="TbxPort_OnPreviewTextInput" 
+                    Style="{DynamicResource MaterialDesignFilledTextBox}" 
+                    Padding="5"
+                    Margin="{StaticResource MarginBottom}" />
                 <!-- Username -->
-                <Label  Grid.Row="2" Content="User name:" />
-                <TextBox Grid.Row="2" Name="TbxUser" Style="{StaticResource Textbox}" />
+                <Label  
+                    Grid.Row="2" 
+                    Content="User name:" 
+                    Style="{DynamicResource MaterialDesignLabel}" />
+                <TextBox 
+                    Grid.Column="1" 
+                    Grid.Row="2" 
+                    Name="TbxUser" 
+                    Style="{DynamicResource MaterialDesignFilledTextBox}" 
+                    Padding="5"
+                    Margin="{StaticResource MarginBottom}" />
                 <!-- Password -->
-                <Label Grid.Row="3" Content="Password:" />
-                <PasswordBox Grid.Row="3" Name="TbxPass" Style="{StaticResource Textbox}" />
+                <Label 
+                    Grid.Row="3" 
+                    Content="Password:" 
+                    Style="{DynamicResource MaterialDesignLabel}" />
+                <PasswordBox 
+                    Grid.Column="1" 
+                    Grid.Row="3" 
+                    Name="TbxPass" Style="{DynamicResource MaterialDesignFilledPasswordBox}" 
+                    Padding="5"
+                    Margin="{StaticResource MarginBottom}" />
                 <!-- Database name -->
-                <Label Grid.Row="4" Content="Database name:" />
-                <TextBox Grid.Row="4" Name="TbxDbName" Style="{StaticResource Textbox}" />
+                <Label 
+                    Grid.Row="4" 
+                    Content="Database name:" 
+                    Style="{DynamicResource MaterialDesignLabel}" />
+                <TextBox 
+                    Grid.Column="1" 
+                    Grid.Row="4" 
+                    Name="TbxDbName" 
+                    Style="{DynamicResource MaterialDesignFilledTextBox}" 
+                    Padding="5"
+                    Margin="{StaticResource MarginBottom}" />
             </Grid>
         </StackPanel>
         <!-- Test Connection -->
-        <Button Name="BtnTestConn" Grid.Column="0" Grid.Row="1" Content="Test Connection" HorizontalAlignment="Left" Click="BtnTestConn_OnClick"/>
+        <Button 
+            Grid.Column="0"
+            Grid.Row="1" 
+            Name="BtnTestConn" 
+            Content="Test Connection" 
+            HorizontalAlignment="Left" 
+            Click="BtnTestConn_OnClick" 
+            Style="{DynamicResource MaterialDesignFlatSecondaryDarkBgButton}" />
         <!-- Save/Cancel -->
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Name="BtnSave" IsDefault="True" Content="Save" Margin="10 0" Click="BtnSave_OnClick" />
-            <Button IsCancel="True" Content="Cancel" />
+            <Button 
+                Name="BtnSave" 
+                IsDefault="True" 
+                Content="Save" 
+                Margin="10 0" 
+                Click="BtnSave_OnClick" 
+                Style="{DynamicResource MaterialDesignOutlinedDarkButton}" />
+            <Button 
+                IsCancel="True" 
+                Content="Cancel" 
+                Style="{DynamicResource MaterialDesignOutlinedButton}" />
         </StackPanel>
     </Grid>
 </Window>
