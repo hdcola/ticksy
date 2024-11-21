@@ -122,6 +122,8 @@ namespace ticksy.Dialogs
                 {
                     Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait;
                     conn.Open();
+
+                    Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow;
                     return true;
                 }
                 catch (SqlException ex)
