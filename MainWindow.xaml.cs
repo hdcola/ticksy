@@ -85,6 +85,18 @@ namespace ticksy
                 // Do something with the data
             }
         }
+
+        /*
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoginMainDlg dialog = new LoginMainDlg();
+            dialog.Owner = this;
+
+            if (dialog.ShowDialog() == true)
+            {
+                // Do something with the data
+            }
+        }*/
         
         private bool ValidateConfigXml(out string connStr)
         {
