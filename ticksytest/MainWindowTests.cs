@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using ticksy;
+using ticksy.Helpers;
 
 namespace ticksytest
 {
@@ -38,6 +39,7 @@ namespace ticksytest
             mainWindow.Close();
         }
 
+        [TestMethod]
         public void BtnCreateProject_OnClick_ShouldOpenDialog()
         {
             // Arrange
@@ -54,5 +56,58 @@ namespace ticksytest
         }
 
 
+
+        // ticksy.Helpers Validator
+        [TestMethod]
+        public void ValidateString_ShouldFail_WhenInputIsEmpty()
+        {
+            string input = "";
+            string fieldName = "First name";
+            int minLength = 5;
+            int maxLength = 50;
+
+            // Act
+            var result = Validator.ValidateString(input, fieldName, minLength, maxLength, out string errorMessage);
+
+            // Assert
+            Assert.IsFalse(result);
+            Assert.AreEqual("Test Field cannot be empty.", errorMessage);
+        }
+
+        [TestMethod]
+        public void ValidateString_ShouldFail_WhenInputIsTooShort()
+        {
+            // Arrange
+            string input = "Phil";
+            string fieldName = "First name";
+            int minLength = 5;
+            int maxLength = 50;
+
+            // Act
+            var result = Validator.ValidateString(input, fieldName, minLength, maxLength, out string errorMessage);
+
+            // Assert
+            Assert.IsFalse(result);
+            Assert.AreEqual("First name must be between 5 and 50 characters.", errorMessage);
+        }
+
+
+
+        [TestMethod]
+        public void ValidateString_ShouldFail_WhenInputIsTooLong()
+        {
+            // Arrange
+            string input = "wetAAAA15243573489236492AAAsdhdogjfgjdgjogdisdhsfdfdfd";
+            string fieldName = "First name";
+            int minLength = 5;
+            int maxLength = 50;
+
+            // Act
+            var result = Validator.ValidateString(input, fieldName, minLength, maxLength, out string errorMessage);
+
+            // Assert
+            Assert.IsFalse(result);
+            Assert.AreEqual("First name must be between 5 and 50 characters.", errorMessage);
+        }
     }
 }

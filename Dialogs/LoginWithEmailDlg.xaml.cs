@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,6 +23,36 @@ namespace ticksy.Dialogs
         public LoginWithEmailDlg()
         {
             InitializeComponent();
+        }
+
+        private void BtnSubmit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public bool isLoginDataValid() 
+        {
+            bool isValid = true;
+            string email = textBoxEmail.Text.Trim();
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                // error text = "Please enter email"
+                Console.WriteLine("Please enter email");
+                isValid = false;
+            }
+
+            try
+            {
+                MailAddress m = new MailAddress(email);
+            }
+            catch
+            {
+                // error text = "Please enter a valid email"
+                Console.WriteLine("Please enter a valid email");
+                isValid = false;
+            }
+
+            return isValid;
         }
     }
 }
