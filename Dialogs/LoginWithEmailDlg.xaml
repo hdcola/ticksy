@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ticksy.Dialogs"
-        mc:Ignorable="d"        
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterOwner"        
         Title="Login in" Height="328" Width="528">
     <Grid>
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="209,29,0,0"
-                   Name="textBlockHeading" Text="Log in with email:" VerticalAlignment="Top" Foreground="BlueViolet"
-                   Width="152" FontSize="17" FontStretch="ExtraCondensed" RenderTransformOrigin="0.573,0.636"/>
+        <TextBlock Width="152"  HorizontalAlignment="Left" Margin="209,29,0,0"
+                   Name="textBlockHeading" Text="Log in with email:" VerticalAlignment="Top" Foreground="BlueViolet" 
+                   FontSize="17" FontStretch="ExtraCondensed" RenderTransformOrigin="0.573,0.636"/>
 
         <Button Name="BtnLogin" Content="Register" Cursor="Hand" Margin="451,5,12,338">
             <Button.Template>
@@ -32,7 +33,7 @@
             </Button.Style>
         </Button>
 
-        <Grid Margin="0,50,0,0" Background="White" Height="244" VerticalAlignment="Top" HorizontalAlignment="Center" Width="395">
+        <Grid Margin="0,59,0,0" Background="White" Height="228" VerticalAlignment="Top" HorizontalAlignment="Center" Width="396">
 
             <TextBlock Height="23" HorizontalAlignment="Left" Margin="50,46,0,0"
                        Name="textBlockEmailId" Text="Email" VerticalAlignment="Top"
@@ -49,10 +50,10 @@
                          Name="passwordBox1" VerticalAlignment="Center" Width="222"
                          Style="{DynamicResource MaterialDesignOutlinedPasswordBox}"/>
 
-            <Button Name="BtnSubmit" Height="30" HorizontalAlignment="Left" Margin="149,175,0,0"
-                    Content="Log in" VerticalAlignment="Top" Width="80"/>
-            <Button Name="BtnCancel" Height="30" HorizontalAlignment="Left" Margin="267,175,0,0"
-                    Content="Cancel" VerticalAlignment="Top" Width="80"/>
+            <Button Name="BtnSubmit" Content="Log in" Click="BtnSubmit_Click" Height="30" HorizontalAlignment="Left" Margin="137,164,0,0"
+                    VerticalAlignment="Top" Width="80"/>
+            <Button Name="BtnCancel" Content="Cancel" IsCancel="True" Height="30" HorizontalAlignment="Left" Margin="261,164,0,0"
+                     VerticalAlignment="Top" Width="80"/>
         </Grid>
     </Grid>
 </Window>
