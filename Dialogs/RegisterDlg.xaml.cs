@@ -42,19 +42,21 @@ namespace ticksy.Dialogs
             // validate First Name
             if (!Validator.ValidateInput(TbFirstName.Text, "First name", 5, 50, out var firstNameErrorMessage))
             {
-                Validator.HandleValidationError(TbErrorFirstName, firstNameErrorMessage, ref isValid);
+                Validator.HandleValidationError(TbErrorFirstName, firstNameErrorMessage, out isValid);
             }
 
             // validate Last Name
             if (!Validator.ValidateInput(TbLastName.Text, "Last name", 5, 50, out var lastNameErrorMessage))
             {
-                Validator.HandleValidationError(TbErrorLastName, lastNameErrorMessage, ref isValid);
+                Validator.HandleValidationError(TbErrorLastName, lastNameErrorMessage, out isValid);
             }
 
             // validate Email
-            if (!Validator.ValidateEmail(TbEmail.Text, out var emailErrorMessage))
+            string emailErrorMessage;
+            if (!Validator.ValidateInput(TbEmail.Text, "Email", 5, 50, out emailErrorMessage) || 
+                !Validator.ValidateEmail(TbEmail.Text, out emailErrorMessage))
             {
-                Validator.HandleValidationError(TbErrorEmail, emailErrorMessage, ref isValid);
+                Validator.HandleValidationError(TbErrorEmail, emailErrorMessage, out isValid);
             }
 
             return isValid;

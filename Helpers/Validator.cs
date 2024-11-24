@@ -56,7 +56,7 @@ namespace ticksy.Helpers
         }
 
 
-        public static void HandleValidationError(TextBlock errorTextBlock, string errorMessage, ref bool isValid)
+        public static void HandleValidationError(TextBlock errorTextBlock, string errorMessage, out bool isValid)
         {
             errorTextBlock.Text = errorMessage;
             Console.WriteLine(errorMessage);
