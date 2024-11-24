@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace ticksy.Helpers
 {
@@ -11,7 +12,7 @@ namespace ticksy.Helpers
         /*
          * Validates a string based on minimum and maximum length.
          */
-        public static bool ValidateString(string input, string fieldName, int minLength, int maxLength, out string errorMessage)
+        public static bool ValidateInput(string input, string fieldName, int minLength, int maxLength, out string errorMessage)
         {
             errorMessage = string.Empty;
 
@@ -29,6 +30,7 @@ namespace ticksy.Helpers
 
             return true;
         }
+
 
         public static bool ValidateEmail(string email, out string errorMessage)
         {   
@@ -53,6 +55,13 @@ namespace ticksy.Helpers
             return true;
         }
 
+
+        public static void HandleValidationError(TextBlock errorTextBlock, string errorMessage, ref bool isValid)
+        {
+            errorTextBlock.Text = errorMessage;
+            Console.WriteLine(errorMessage);
+            isValid = false;
+        }
 
 
     }

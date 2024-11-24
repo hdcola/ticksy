@@ -28,10 +28,10 @@ namespace ticksy.Dialogs
 
         private void BtnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            /*if (isRegisterDataValid()) { 
+            if (isRegisterDataValid()) { 
                 Console.WriteLine("Please enter valid data");
                 return;
-            }*/
+            }
         }
 
 
@@ -39,14 +39,28 @@ namespace ticksy.Dialogs
         {
             bool isValid = true;
 
-            if (!Validator.ValidateString(TbFirstName.Text, "First name", 5, 50, out var errorMessage))
+            // validate First Name
+            if (!Validator.ValidateInput(TbFirstName.Text, "First name", 5, 50, out var firstNameErrorMessage))
             {
-                TbErrorFirstName.Text = errorMessage;
-                Console.WriteLine(errorMessage);
-                isValid = false;
+                Validator.HandleValidationError(TbErrorFirstName, firstNameErrorMessage, ref isValid);
+            }
+
+            // validate Last Name
+            if (!Validator.ValidateInput(TbLastName.Text, "Last name", 5, 50, out var lastNameErrorMessage))
+            {
+                Validator.HandleValidationError(TbErrorLastName, lastNameErrorMessage, ref isValid);
+            }
+
+            // validate Email
+            if (!Validator.ValidateEmail(TbEmail.Text, out var emailErrorMessage))
+            {
+                Validator.HandleValidationError(TbErrorEmail, emailErrorMessage, ref isValid);
             }
 
             return isValid;
         }
+
+       
+
     }
 }

@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using ticksy;
+using ticksy.Dialogs;
 using ticksy.Helpers;
 
 namespace ticksytest
@@ -60,7 +61,7 @@ namespace ticksytest
 
         // ticksy.Helpers Validator
         [TestMethod]
-        public void ValidateString_ShouldFail_WhenInputIsEmpty()
+        public void ValidateInput_ShouldFail_WhenInputIsEmpty()
         {
             string input = "";
             string fieldName = "First name";
@@ -68,7 +69,7 @@ namespace ticksytest
             int maxLength = 50;
 
             // Act
-            var result = Validator.ValidateString(input, fieldName, minLength, maxLength, out string errorMessage);
+            var result = Validator.ValidateInput(input, fieldName, minLength, maxLength, out string errorMessage);
 
             // Assert
             Assert.IsFalse(result);
@@ -76,7 +77,7 @@ namespace ticksytest
         }
 
         [TestMethod]
-        public void ValidateString_ShouldFail_WhenInputIsTooShort()
+        public void ValidateInput_ShouldFail_WhenInputIsTooShort()
         {
             // Arrange
             string input = "Phil";
@@ -85,7 +86,7 @@ namespace ticksytest
             int maxLength = 50;
 
             // Act
-            var result = Validator.ValidateString(input, fieldName, minLength, maxLength, out string errorMessage);
+            var result = Validator.ValidateInput(input, fieldName, minLength, maxLength, out string errorMessage);
 
             // Assert
             Assert.IsFalse(result);
@@ -95,7 +96,7 @@ namespace ticksytest
 
 
         [TestMethod]
-        public void ValidateString_ShouldFail_WhenInputIsTooLong()
+        public void ValidateInput_ShouldFail_WhenInputIsTooLong()
         {
             // Arrange
             string input = "wetAAAA15243573489236492AAAsdhdogjfgjdgjogdisdhsfdfdfd";
@@ -104,7 +105,7 @@ namespace ticksytest
             int maxLength = 50;
 
             // Act
-            var result = Validator.ValidateString(input, fieldName, minLength, maxLength, out string errorMessage);
+            var result = Validator.ValidateInput(input, fieldName, minLength, maxLength, out string errorMessage);
 
             // Assert
             Assert.IsFalse(result);
@@ -140,20 +141,6 @@ namespace ticksytest
             Assert.AreEqual("Please enter a valid email address.", errorMessage);
 
         }
-
-       /* public static bool ValidateEmail(string email, string fieldName, out string errorMessage)
-        {        errorMessage = string.Empty;
-            if (string.IsNullOrWhiteSpace(email))            {
-                errorMessage = $"{fieldName} cannot be empty or whitespace.";
-                return false;
-            }
-                   // regex for email validation
-            var emailRegex = new System.Text.RegularExpressions.Regex(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
-                  if (!emailRegex.IsMatch(email))          {
-                errorMessage = $"{fieldName} must be a valid email address.";
-                return false;          }
-            return true;
-        }*/
 
 
     }
