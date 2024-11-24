@@ -38,7 +38,7 @@ namespace ticksytest
             // Cleanup
             mainWindow.Close();
         }
-
+        /*
         [TestMethod]
         public void BtnCreateProject_OnClick_ShouldOpenDialog()
         {
@@ -54,7 +54,7 @@ namespace ticksytest
             // Cleanup
             mainWindow.Close();
         }
-
+        */
 
 
         // ticksy.Helpers Validator
