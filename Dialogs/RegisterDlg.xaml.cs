@@ -28,10 +28,10 @@ namespace ticksy.Dialogs
 
         private void BtnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            if (isRegisterDataValid()) { 
+            /*if (isRegisterDataValid()) { 
                 Console.WriteLine("Please enter valid data");
                 return;
-            }
+            }*/
         }
 
 

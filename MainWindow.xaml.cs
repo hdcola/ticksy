@@ -82,6 +82,7 @@ namespace ticksy
             }
         }
 
+        /*
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             LoginMainDlg dialog = new LoginMainDlg();
@@ -91,6 +92,6 @@ namespace ticksy
             {
                 // Do something with the data
             }
-        }
+        }*/
     }
 }

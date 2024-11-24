@@ -71,7 +71,7 @@ namespace ticksytest
 
             // Assert
             Assert.IsFalse(result);
-            Assert.AreEqual("Test Field cannot be empty.", errorMessage);
+            Assert.AreEqual("First name cannot be empty.", errorMessage);
         }
 
         [TestMethod]
