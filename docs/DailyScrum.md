@@ -1,61 +1,189 @@
-# Ticksy
-## Daily Scrum meetings
+# Ticksy 
 
-### *11/20*
-#### Iana
-##### Done since last scrum
-- ER digram and use case diagram, created SQL database in Microsoft Azure
-##### To do until next scrum
-- Research Material Design to start creating dialogs
-##### Need assistance with
--
+## Daily Scrum meetings 
 
-#### Tamara
-##### Done since last scrum
-- Looked at Clockify features to better understand our tasks
-##### To do until next scrum
-- Research Material Design for frontend design
-- Update the readme
-- Implement config dialog and file for database connection
-##### Need assistance with
--
+ 
 
-#### Danny
-##### Done since last scrum
-- Create GitHub repository
-- Revised project proposal
-##### To do until next scrum
-- create Visual Studio project
-- Research unit test
-- Research use GitHub action does unit test
-##### Need assistance with
--
+### *11/20* 
 
-***
+#### Iana 
 
-### *11/21*
-#### Iana
-##### Done since last scrum
+##### Done since last scrum 
+
+- ER digram and use case diagram, created SQL database in Microsoft Azure 
+
+##### To do until next scrum 
+
+- Research Material Design to start creating dialogs 
+
+##### Need assistance with 
+
 - 
-##### To do until next scrum
--
-##### Need assistance with
--
 
-#### Tamara
-##### Done since last scrum
+ 
+
+#### Tamara 
+
+##### Done since last scrum 
+
+- Looked at Clockify features to better understand our tasks 
+
+##### To do until next scrum 
+
+- Research Material Design for frontend design 
+
+- Update the readme 
+
+- Implement config dialog and file for database connection 
+
+##### Need assistance with 
+
 - 
-##### To do until next scrum
--
-##### Need assistance with
--
 
-#### Danny
-##### Done since last scrum
+ 
+
+#### Danny 
+
+##### Done since last scrum 
+
+- Create GitHub repository 
+
+- Revised project proposal 
+
+##### To do until next scrum 
+
+- create Visual Studio project 
+
+- Research unit test 
+
+- Research use GitHub action does unit test 
+
+##### Need assistance with 
+
 - 
-##### To do until next scrum
--
-##### Need assistance with
--
 
-***
+ 
+
+*** 
+
+ 
+
+### *11/21* 
+
+#### Iana 
+
+##### Done since last scrum 
+
+- Created Window with creating new project with Material design 
+
+- Started to work on log in main window (with buttons to choose login with email or google) 
+
+##### To do until next scrum 
+
+- Will work on log in and register windows 
+
+##### Need assistance with 
+
+- 
+
+ 
+
+#### Tamara 
+
+##### Done since last scrum 
+
+- Research Material Design for frontend design 
+
+- Update the readme 
+
+- Implement config dialog and file for database connection 
+
+##### To do until next scrum 
+
+- Read from the config.xml to setup DbContext 
+
+##### Need assistance with 
+
+- 
+
+ 
+
+#### Danny 
+
+##### Done since last scrum 
+
+- create Visual Studio project 
+
+- Create unit test 
+
+- Create GitHub Actions to Automate CI Workflows 
+
+##### To do until next scrum 
+
+- Research PDF export 
+
+- Research Extended WPF Toolkit 
+
+##### Need assistance with 
+
+- 
+
+ 
+
+*** 
+
+ 
+
+### *11/22* 
+
+#### Iana 
+
+##### Done since last scrum 
+
+-  
+
+##### To do until next scrum 
+
+- 
+
+##### Need assistance with 
+
+- 
+
+ 
+
+#### Tamara 
+
+##### Done since last scrum 
+
+-  
+
+##### To do until next scrum 
+
+- 
+
+##### Need assistance with 
+
+- 
+
+ 
+
+#### Danny 
+
+##### Done since last scrum 
+
+-  
+
+##### To do until next scrum 
+
+-  
+
+##### Need assistance with 
+
+- 
+
+ 
+
+*** 
+
+ 
