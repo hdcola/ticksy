@@ -38,6 +38,7 @@ namespace ticksytest
             // Cleanup
             mainWindow.Close();
         }
+
         /*
         [TestMethod]
         public void BtnCreateProject_OnClick_ShouldOpenDialog()
@@ -109,5 +110,51 @@ namespace ticksytest
             Assert.IsFalse(result);
             Assert.AreEqual("First name must be between 5 and 50 characters.", errorMessage);
         }
+
+        [TestMethod]
+        public void ValidateEmail_ShouldFail_WhenEmpty()
+        {
+            // Arrange
+            string email = "";
+
+            // Act
+            var result = Validator.ValidateEmail(email, out string errorMessage);
+
+            // Assert
+            Assert.IsFalse(result);
+            Assert.AreEqual("Email cannot be empty.", errorMessage);
+        }
+
+
+        [TestMethod]
+        public void ValidateEmail_ShouldFail_WhenNotValidEmail()
+        { 
+            // Arrange
+            string email = "aaa@gmail";
+
+            // Act
+            var result = Validator.ValidateEmail(email, out string errorMessage);
+
+            // Assert
+            Assert.IsFalse(result);
+            Assert.AreEqual("Please enter a valid email address.", errorMessage);
+
+        }
+
+       /* public static bool ValidateEmail(string email, string fieldName, out string errorMessage)
+        {        errorMessage = string.Empty;
+            if (string.IsNullOrWhiteSpace(email))            {
+                errorMessage = $"{fieldName} cannot be empty or whitespace.";
+                return false;
+            }
+                   // regex for email validation
+            var emailRegex = new System.Text.RegularExpressions.Regex(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+                  if (!emailRegex.IsMatch(email))          {
+                errorMessage = $"{fieldName} must be a valid email address.";
+                return false;          }
+            return true;
+        }*/
+
+
     }
 }

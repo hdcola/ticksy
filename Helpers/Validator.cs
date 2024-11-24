@@ -30,6 +30,28 @@ namespace ticksy.Helpers
             return true;
         }
 
+        public static bool ValidateEmail(string email, out string errorMessage)
+        {   
+            errorMessage = string.Empty;
+
+            if (string.IsNullOrWhiteSpace(email)) 
+            {
+                errorMessage = "Email cannot be empty.";
+                return false;
+            }
+
+
+            // regex for email validation
+            var emailRegex = new System.Text.RegularExpressions.Regex(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+
+            if (!emailRegex.IsMatch(email))
+            {
+                errorMessage = "Please enter a valid email address.";
+                return false;
+            }
+
+            return true;
+        }
 
 
 
