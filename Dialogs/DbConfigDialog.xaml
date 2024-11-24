@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:ticksy.Dialogs"
         mc:Ignorable="d"
         WindowStartupLocation="CenterOwner"
-        Style="{DynamicResource MaterialDesignWindow}"
+        Style="{StaticResource MaterialDesignWindow}"
         Background="White"
         Title="Add Database" ResizeMode="NoResize" SizeToContent="Height" Width="420" Loaded="Window_OnLoaded">
     <Grid Margin="10 15">
