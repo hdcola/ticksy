@@ -64,7 +64,7 @@ namespace ticksytest
         public void ValidateInput_ShouldFail_WhenInputIsEmpty()
         {
             string input = "";
-            string fieldName = "First name";
+            string fieldName = "Username";
             int minLength = 5;
             int maxLength = 50;
 
@@ -73,15 +73,15 @@ namespace ticksytest
 
             // Assert
             Assert.IsFalse(result);
-            Assert.AreEqual("First name cannot be empty.", errorMessage);
+            Assert.AreEqual("Username cannot be empty.", errorMessage);
         }
 
         [TestMethod]
         public void ValidateInput_ShouldFail_WhenInputIsTooShort()
         {
             // Arrange
-            string input = "Phil";
-            string fieldName = "First name";
+            string input = "Den";
+            string fieldName = "Username";
             int minLength = 5;
             int maxLength = 50;
 
@@ -90,7 +90,7 @@ namespace ticksytest
 
             // Assert
             Assert.IsFalse(result);
-            Assert.AreEqual("First name must be between 5 and 50 characters.", errorMessage);
+            Assert.AreEqual("Username must be between 5 and 50 characters.", errorMessage);
         }
 
 
@@ -100,7 +100,7 @@ namespace ticksytest
         {
             // Arrange
             string input = "wetAAAA15243573489236492AAAsdhdogjfgjdgjogdisdhsfdfdfd";
-            string fieldName = "First name";
+            string fieldName = "Username";
             int minLength = 5;
             int maxLength = 50;
 
@@ -109,7 +109,7 @@ namespace ticksytest
 
             // Assert
             Assert.IsFalse(result);
-            Assert.AreEqual("First name must be between 5 and 50 characters.", errorMessage);
+            Assert.AreEqual("Username must be between 5 and 50 characters.", errorMessage);
         }
 
         [TestMethod]

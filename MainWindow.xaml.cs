@@ -37,6 +37,13 @@ namespace ticksy
             {
                 Globals.DbContext = new Entities(connStr);
                 Trace.WriteLine("Successfully connected to Azure database.");
+                LoginMainDlg dialog = new LoginMainDlg();
+                dialog.Owner = this;
+
+                if (dialog.ShowDialog() == true)
+                {
+                    // Do something with the data
+                }
             }
             catch (SystemException ex)
             {
@@ -86,17 +93,7 @@ namespace ticksy
             }
         }
 
-        /*
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            LoginMainDlg dialog = new LoginMainDlg();
-            dialog.Owner = this;
-
-            if (dialog.ShowDialog() == true)
-            {
-                // Do something with the data
-            }
-        }*/
+        
         
         private bool ValidateConfigXml(out string connStr)
         {

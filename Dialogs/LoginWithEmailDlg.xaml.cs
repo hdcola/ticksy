@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ticksy.Helpers;
 
 namespace ticksy.Dialogs
 {
@@ -25,32 +26,25 @@ namespace ticksy.Dialogs
             InitializeComponent();
         }
 
-        private void BtnSubmit_Click(object sender, RoutedEventArgs e)
+        private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
+
+            // bool isValidPassword = BCrypt.Net.BCrypt.Verify(enteredPassword, storedHashedPassword);
 
         }
 
         public bool isLoginDataValid() 
         {
             bool isValid = true;
-            string email = textBoxEmail.Text.Trim();
-            if (string.IsNullOrWhiteSpace(email))
+
+            // validate Email
+            string emailErrorMessage;
+            if (!Validator.ValidateInput(TbEmail.Text, "Email", 1, 360, out emailErrorMessage) ||
+                !Validator.ValidateEmail(TbEmail.Text, out emailErrorMessage))
             {
-                // error text = "Please enter email"
-                Console.WriteLine("Please enter email");
-                isValid = false;
+                Validator.HandleValidationError(TbErrorEmail, emailErrorMessage, out isValid);
             }
 
-            try
-            {
-                MailAddress m = new MailAddress(email);
-            }
-            catch
-            {
-                // error text = "Please enter a valid email"
-                Console.WriteLine("Please enter a valid email");
-                isValid = false;
-            }
 
             return isValid;
         }

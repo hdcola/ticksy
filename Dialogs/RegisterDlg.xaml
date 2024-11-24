@@ -6,7 +6,8 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ticksy.Dialogs"
         mc:Ignorable="d" ResizeMode="NoResize"
-        Title="Register" Height="380" Width="400" >
+        WindowStartupLocation="CenterOwner"        
+        Title="Register" Height="380" Width="420" >
     <Grid Margin="10">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -60,8 +61,8 @@
                 <Border CornerRadius="4" 
                          Background="White" 
                          Padding="4">
-                    <TextBox Name="TbFirstName" 
-                              materialDesign:HintAssist.Hint="First Name" 
+                    <TextBox Name="TbUsername" TextChanged="TbUsername_TextChanged"
+                              materialDesign:HintAssist.Hint="Username" 
                               Height="24" 
                               Padding="4,0" 
                               VerticalAlignment="Top" 
@@ -75,7 +76,7 @@
                     </TextBox>
                 </Border>
 
-                <TextBlock Name="TbErrorFirstName" 
+                <TextBlock Name="TbErrorUsername" 
                 Text="" 
                 Foreground="Red" 
                 FontSize="9" 
@@ -84,39 +85,13 @@
             </StackPanel>
 
 
-            <StackPanel Grid.Row="1" VerticalAlignment="Center" Height="44" Grid.ColumnSpan="2">
-                <Border CornerRadius="4" 
-                        Background="White" 
-                        Padding="4">
-                    <TextBox Name="TbLastName" 
-                             materialDesign:HintAssist.Hint="Last Name" 
-                             Height="24" 
-                             Padding="4,0" 
-                             VerticalAlignment="Top" 
-                             Style="{DynamicResource MaterialDesignFloatingHintTextBox}" >
-                        <TextBox.Resources>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="FontSize" Value="14" />
-                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
-                            </Style>
-                        </TextBox.Resources>
-                    </TextBox>
-                </Border>
-
-                <TextBlock Name="TbErrorLastName" 
-                           Text="" 
-                           Foreground="Red" 
-                           FontSize="9" 
-                           Margin="4,0,0,0" 
-                           Visibility="Visible" />
-            </StackPanel>
 
 
             <StackPanel VerticalAlignment="Center" Height="44" Grid.Row="2" Grid.ColumnSpan="2">
                 <Border CornerRadius="4" 
                         Background="White" 
                         Padding="4">
-                    <TextBox Name="TbEmail" 
+                    <TextBox Name="TbEmail" TextChanged="TbEmail_TextChanged"
                              materialDesign:HintAssist.Hint="Email" 
                              Height="24" 
                              Padding="4,0" 
@@ -144,7 +119,7 @@
                 <Border CornerRadius="4" 
                         Background="White" 
                         Padding="4">
-                    <TextBox Name="TbPassword" 
+                    <TextBox Name="TbPassword" TextChanged="TbPassword_TextChanged"
                              materialDesign:HintAssist.Hint="Password" 
                              Height="24" 
                              Padding="4,0" 
@@ -171,7 +146,7 @@
                 <Border CornerRadius="4" 
                         Background="White" 
                         Padding="4">
-                    <TextBox Name="TbConfirmPassword" 
+                    <TextBox Name="TbConfirmPassword" TextChanged="TbConfirmPassword_TextChanged" 
                              materialDesign:HintAssist.Hint="Confirm password" 
                              Height="24" 
                              Padding="4,0" 
@@ -195,7 +170,7 @@
             </StackPanel>
 
             <StackPanel Margin="0,15,0,0" Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="2">
-                <Button Content="Register" Name="BtnSubmit" Click="BtnSubmit_Click"  Height="26" Width="80" 
+                <Button Content="Register" Name="BtnRegister" Click="BtnRegister_Click"  Height="26" Width="80" 
                         HorizontalAlignment="Left" Margin="0,0,0,0"
                 VerticalAlignment="Top" FontSize ="12" />
                 <Button Content="Cancel" Name="BtnCancel"  IsCancel="True" Height="26" Width="80" 
