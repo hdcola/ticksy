@@ -109,6 +109,9 @@
     <Compile Include="Dialogs\AboutDlg.xaml.cs">
       <DependentUpon>AboutDlg.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\FocusTimerDlg.xaml.cs">
+      <DependentUpon>FocusTimerDlg.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\XmlHelper.cs" />
     <Compile Include="Project.cs">
       <DependentUpon>TicksyDbContext.tt</DependentUpon>
@@ -150,6 +153,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Dialogs\CreateInvoiceDlg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\FocusTimerDlg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
