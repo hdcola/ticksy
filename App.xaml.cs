@@ -31,8 +31,21 @@ namespace ticksy
                 Environment.Exit(0);
             }
 
+            // Load Database context into Globals
+            try
+            {
+                Globals.DbContext = new Entities(connStr);
+                Trace.WriteLine("Successfully connected to Azure database.");
+            }
+            catch (SystemException ex)
+            {
+                MessageBox.Show($"Fatal error\n {ex.Message}", Globals.AppName, MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+                Environment.Exit(1);
+            }
+
             // Start main application
-            MainWindow mainWindow = new MainWindow(connStr);
+            MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.ShutdownMode = ShutdownMode.OnLastWindowClose;
         }

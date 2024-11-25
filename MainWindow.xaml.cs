@@ -18,23 +18,7 @@ namespace ticksy
     {
         public MainWindow()
         {
-            this.connStr = connStr;
             InitializeComponent();
-        }
-        private void Window_OnLoaded(object sender, RoutedEventArgs e)
-        {
-            // Load Database context into Globals
-            try
-            {
-                Globals.DbContext = new Entities(connStr);
-                Trace.WriteLine("Successfully connected to Azure database.");
-            }
-            catch (SystemException ex)
-            {
-                MessageBox.Show(this, $"Fatal error\n {ex.Message}", Globals.AppName, MessageBoxButton.OK,
-                    MessageBoxImage.Error);
-                Environment.Exit(0);
-            }
         }
 
         private void btnCreateProject_Click(object sender, RoutedEventArgs e)
@@ -69,6 +53,16 @@ namespace ticksy
             {
                 // Do something with the data
             }
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+        private void menuAbout_Click(object sender, RoutedEventArgs e)
+        {
+            AboutDlg dialog = new AboutDlg() { Owner = this };
+            dialog.ShowDialog();
         }
 
         /*
