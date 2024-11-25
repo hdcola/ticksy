@@ -63,7 +63,10 @@
                 <!-- DataGrid -->
                 <DataGrid Grid.Row="5" ItemsSource="{Binding Items}" AutoGenerateColumns="True" Margin="0 10 0 0" />
 
-                <Button Grid.Row="6" Name="btnUpdatePreview" Content="Update Preview" Click="btnUpdatePreview_Click" Margin="10" />
+                <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button  Name="btnUpdatePreview" Content="Update Preview" Click="btnUpdatePreview_Click" Margin="10" />
+                    <Button  Name="btnExport" Content="Export to PDF" Click="btnExport_Click" Margin="10" />
+                </StackPanel>
             </Grid>
             <Grid Grid.Column="1">
                 <wv2:WebView2 Name="PdfViewer" />

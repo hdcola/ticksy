@@ -168,5 +168,27 @@ namespace ticksy.Dialogs
             MessageBox.Show($"{CurrentInvoice}");
             updatePreview();
         }
+
+        private void btnExport_Click(object sender, RoutedEventArgs e)
+        {
+            // show save *.pdf dialog
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog
+            {
+                FileName = "Invoice",
+                DefaultExt = ".pdf",
+                Filter = "PDF documents (.pdf)|*.pdf"
+            };
+
+            bool? result = dlg.ShowDialog();
+            if (result == true)
+            {
+                string filename = dlg.FileName;
+                using (FileStream fileStream = new FileStream(filename, FileMode.Create, FileAccess.Write))
+                {
+                    MemoryStream pdfStream = GeneratedPdfStream(CurrentInvoice);
+                    pdfStream.WriteTo(fileStream);
+                }
+            }
+        }
     }
 }
