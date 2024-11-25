@@ -45,43 +45,34 @@
 
                 <!-- Server -->
                 <TextBox 
-                    Grid.Column="1" 
                     Grid.Row="0" 
                     Name="TbxServer" 
                     materialDesign:HintAssist.Hint="Server" 
-                    Style="{DynamicResource MaterialDesignFloatingHintTextBox}" 
                     Margin="{StaticResource MarginBottom}" />
                 <!-- Port -->
                 <TextBox 
-                    Grid.Column="1" 
                     Grid.Row="1" 
                     Name="TbxPort" 
                     materialDesign:HintAssist.Hint="Port"
                     PreviewTextInput="TbxPort_OnPreviewTextInput" 
-                    Style="{DynamicResource MaterialDesignFloatingHintTextBox}" 
                     Margin="{StaticResource MarginBottom}" />
                 <!-- Username -->
                 <TextBox 
-                    Grid.Column="1" 
                     Grid.Row="2" 
                     Name="TbxUser" 
                     materialDesign:HintAssist.Hint="User name"
-                    Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
                     Margin="{StaticResource MarginBottom}" />
                 <!-- Password -->
                 <PasswordBox 
-                    Grid.Column="1" 
-                    Grid.Row="3" 
+                    Grid.Row="3"
                     materialDesign:HintAssist.Hint="Password"
-                    Name="TbxPass" Style="{DynamicResource MaterialDesignFloatingHintPasswordBox}" 
+                    Name="TbxPass" 
                     Margin="{StaticResource MarginBottom}" />
                 <!-- Database name -->
                 <TextBox 
-                    Grid.Column="1" 
                     Grid.Row="4" 
                     Name="TbxDbName" 
                     materialDesign:HintAssist.Hint="Database name"
-                    Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
                     Margin="{StaticResource MarginBottom}" />
             </Grid>
         </StackPanel>
