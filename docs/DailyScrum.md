@@ -134,17 +134,18 @@
 
  
 
-### *11/22* 
+### *11/24* 
 
 #### Iana 
 
 ##### Done since last scrum 
 
--  
+- Created helper validation function for inputs
+- Checked the register functionality - saved to database 
 
 ##### To do until next scrum 
 
-- 
+- Will start dashboard layout 
 
 ##### Need assistance with 
 
@@ -156,11 +157,13 @@
 
 ##### Done since last scrum 
 
--  
+- Read xml from file and setup DbContext 
 
 ##### To do until next scrum 
 
-- 
+- Fix how the application starts, xml validation first, then main window flow 
+
+- Start creating the timer dialog 
 
 ##### Need assistance with 
 
@@ -172,7 +175,11 @@
 
 ##### Done since last scrum 
 
--  
+- add PDF use web view show in Dialog 
+
+- add MigraDoc render to a PDF file 
+
+- add WPF Toolkit into project 
 
 ##### To do until next scrum 
 

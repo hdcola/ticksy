@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ticksy.Dialogs"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterOwner"
+        WindowStartupLocation="CenterScreen"
         Style="{StaticResource MaterialDesignWindow}"
         Background="White"
         Title="Add Database" ResizeMode="NoResize" SizeToContent="Height" Width="420" Loaded="Window_OnLoaded">
@@ -30,11 +30,7 @@
         <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Orientation="Vertical">
             <Label Content="Enter information to connect to the Azure database"/>
 
-            <Grid Margin="0 10 0 15" VerticalAlignment="Top">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1.6*"/>
-                    <ColumnDefinition Width="4*"/>
-                </Grid.ColumnDefinitions>
+            <Grid Margin="50 10 50 15" VerticalAlignment="Top">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
@@ -48,64 +44,35 @@
                 </Grid.Resources>
 
                 <!-- Server -->
-                <Label 
-                    Grid.Row="0" 
-                    Content="Server:" 
-                    Style="{DynamicResource MaterialDesignLabel}" />
                 <TextBox 
-                    Grid.Column="1" 
                     Grid.Row="0" 
                     Name="TbxServer" 
-                    Style="{DynamicResource MaterialDesignFilledTextBox}" 
-                    Padding="5" 
+                    materialDesign:HintAssist.Hint="Server" 
                     Margin="{StaticResource MarginBottom}" />
                 <!-- Port -->
-                <Label  
-                    Grid.Row="1" 
-                    Content="Port:" 
-                    Style="{DynamicResource MaterialDesignLabel}" />
                 <TextBox 
-                    Grid.Column="1" 
                     Grid.Row="1" 
                     Name="TbxPort" 
+                    materialDesign:HintAssist.Hint="Port"
                     PreviewTextInput="TbxPort_OnPreviewTextInput" 
-                    Style="{DynamicResource MaterialDesignFilledTextBox}" 
-                    Padding="5"
                     Margin="{StaticResource MarginBottom}" />
                 <!-- Username -->
-                <Label  
-                    Grid.Row="2" 
-                    Content="User name:" 
-                    Style="{DynamicResource MaterialDesignLabel}" />
                 <TextBox 
-                    Grid.Column="1" 
                     Grid.Row="2" 
                     Name="TbxUser" 
-                    Style="{DynamicResource MaterialDesignFilledTextBox}" 
-                    Padding="5"
+                    materialDesign:HintAssist.Hint="User name"
                     Margin="{StaticResource MarginBottom}" />
                 <!-- Password -->
-                <Label 
-                    Grid.Row="3" 
-                    Content="Password:" 
-                    Style="{DynamicResource MaterialDesignLabel}" />
                 <PasswordBox 
-                    Grid.Column="1" 
-                    Grid.Row="3" 
-                    Name="TbxPass" Style="{DynamicResource MaterialDesignFilledPasswordBox}" 
-                    Padding="5"
+                    Grid.Row="3"
+                    materialDesign:HintAssist.Hint="Password"
+                    Name="TbxPass" 
                     Margin="{StaticResource MarginBottom}" />
                 <!-- Database name -->
-                <Label 
-                    Grid.Row="4" 
-                    Content="Database name:" 
-                    Style="{DynamicResource MaterialDesignLabel}" />
                 <TextBox 
-                    Grid.Column="1" 
                     Grid.Row="4" 
                     Name="TbxDbName" 
-                    Style="{DynamicResource MaterialDesignFilledTextBox}" 
-                    Padding="5"
+                    materialDesign:HintAssist.Hint="Database name"
                     Margin="{StaticResource MarginBottom}" />
             </Grid>
         </StackPanel>
