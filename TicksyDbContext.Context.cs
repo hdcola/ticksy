@@ -15,8 +15,9 @@ namespace ticksy
     
     public partial class Entities : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public Entities(string connStr)
+            : base(string.Format(
+                @"metadata=res://*/TicksyDbContext.csdl|res://*/TicksyDbContext.ssdl|res://*/TicksyDbContext.msl;provider=System.Data.SqlClient;provider connection string='{0}'", connStr))
         {
         }
     
