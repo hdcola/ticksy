@@ -30,9 +30,16 @@ namespace ticksy.Dialogs
         {
 
             // bool isValidPassword = BCrypt.Net.BCrypt.Verify(enteredPassword, storedHashedPassword);
+            /*
+            if (!isLoginDataValid())
+            {
+                Console.WriteLine("Invalid ");
+            }
+            */
 
         }
 
+        /*
         public bool isLoginDataValid() 
         {
             bool isValid = true;
@@ -48,5 +55,6 @@ namespace ticksy.Dialogs
 
             return isValid;
         }
+        */
     }
 }

@@ -34,6 +34,7 @@ namespace ticksy.Dialogs
 
             string errors = "";
 
+            /*
             if (!isRegisterDataValid(out errors))
             {
                 Console.WriteLine("Validation failed: " + errors);
@@ -79,6 +80,7 @@ namespace ticksy.Dialogs
                 Console.WriteLine($"Registration failed: {ex.Message}");
 
             }
+            */
         }
 
 
@@ -124,7 +126,7 @@ namespace ticksy.Dialogs
             return isValid;
         }
 
-
+        /*
         private async Task<byte[]> DownloadImageAsync(string imageUrl)
         {
             using (HttpClient client = new HttpClient())
@@ -132,6 +134,7 @@ namespace ticksy.Dialogs
                 return await client.GetByteArrayAsync(imageUrl); 
             }
         }
+        */
 
         private void TbUsername_TextChanged(object sender, TextChangedEventArgs e)
         {
