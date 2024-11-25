@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ticksy.Dialogs"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterOwner"
+        WindowStartupLocation="CenterScreen"
         Style="{StaticResource MaterialDesignWindow}"
         Background="White"
         Title="Add Database" ResizeMode="NoResize" SizeToContent="Height" Width="420" Loaded="Window_OnLoaded">
