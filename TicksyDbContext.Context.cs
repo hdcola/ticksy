@@ -15,13 +15,11 @@ namespace ticksy
     
     public partial class Entities : DbContext
     {
-        public Entities(string connStr)
-            : base(string.Format(
-                @"metadata=res://*/TicksyDbContext.csdl|res://*/TicksyDbContext.ssdl|res://*/TicksyDbContext.msl;provider=System.Data.SqlClient;provider connection string='{0}'", connStr))
+        public Entities()
+            : base("name=Entities")
         {
         }
-
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

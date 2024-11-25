@@ -23,7 +23,6 @@ namespace ticksy
         public long TaskId { get; set; }
         public long ProjectId { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
         public int Status { get; set; }
         public System.DateTime CreatedAt { get; set; }
         public System.DateTime UpdatedAt { get; set; }
