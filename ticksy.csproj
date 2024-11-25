@@ -106,6 +106,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Dialogs\AboutDlg.xaml.cs">
+      <DependentUpon>AboutDlg.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\XmlHelper.cs" />
     <Compile Include="Project.cs">
       <DependentUpon>TicksyDbContext.tt</DependentUpon>
@@ -134,6 +137,10 @@
     <Compile Include="User.cs">
       <DependentUpon>TicksyDbContext.tt</DependentUpon>
     </Compile>
+    <Page Include="Dialogs\AboutDlg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialogs\CreateProjectDlg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

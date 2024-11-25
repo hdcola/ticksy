@@ -16,15 +16,10 @@ namespace ticksy
     /// </summary>
     public partial class MainWindow : Window
     {
-        private int count = 0;
-        private string connStr;
-
-        public MainWindow(string connStr)
+        public MainWindow()
         {
             this.connStr = connStr;
             InitializeComponent();
-
-            txtCount.Text = count.ToString();
         }
         private void Window_OnLoaded(object sender, RoutedEventArgs e)
         {
@@ -40,12 +35,6 @@ namespace ticksy
                     MessageBoxImage.Error);
                 Environment.Exit(0);
             }
-        }
-
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
-        {
-            count++;
-            txtCount.Text = count.ToString();
         }
 
         private void btnCreateProject_Click(object sender, RoutedEventArgs e)
