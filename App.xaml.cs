@@ -24,8 +24,7 @@ namespace ticksy
         {
             this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
             // Check xml config
-            string connStr = ValidateConfigXml();
-            if (connStr == "")
+            if (!IsValidConfigXml(out string connStr))
             {
                 // No valid config.xml in place to proceed
                 Environment.Exit(0);
@@ -50,8 +49,9 @@ namespace ticksy
             this.ShutdownMode = ShutdownMode.OnLastWindowClose;
         }
 
-        private string ValidateConfigXml()
+        private bool IsValidConfigXml(out string connStr)
         {
+            connStr = null;
             Dictionary<string, string> configs = null;
 
             // Get the path to the AppData folder
@@ -61,7 +61,7 @@ namespace ticksy
             // Validate config.xml exists
             if (!File.Exists(filePath))
             {
-                if (!TryConfigureDb(out configs)) return "";
+                if (!TryConfigureDb(out configs)) return false;
             }
 
             // Read from config.xml and validate values are working
@@ -96,7 +96,7 @@ namespace ticksy
                     MessageBox.Show($"Unable to read config.xml\n {ex.Message}", Globals.AppName,
                         MessageBoxButton.OK, MessageBoxImage.Error);
 
-                    if (!TryConfigureDb(out configs)) return "";
+                    if (!TryConfigureDb(out configs)) return false;
                 }
                 catch (SqlException ex)
                 {
@@ -105,11 +105,12 @@ namespace ticksy
                         MessageBoxImage.Error);
 
                     // Prefill dialog with existing values
-                    if (!TryConfigureDb(out configs, server, port, username, dbName)) return "";
+                    if (!TryConfigureDb(out configs, server, port, username, dbName)) return false;
                 }
             }
 
-            return DbConfigDialog.BuildConnectionString(configs);
+            connStr = DbConfigDialog.BuildConnectionString(configs);
+            return true;
         }
 
         /// <summary>
