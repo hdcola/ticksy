@@ -16,13 +16,9 @@ namespace ticksy
     /// </summary>
     public partial class MainWindow : Window
     {
-        private int count = 0;
-
         public MainWindow()
         {
             InitializeComponent();
-
-            txtCount.Text = count.ToString();
         }
         private void Window_OnLoaded(object sender, RoutedEventArgs e)
         {
@@ -44,12 +40,6 @@ namespace ticksy
                     MessageBoxImage.Error);
                 Environment.Exit(0);
             }
-        }
-
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
-        {
-            count++;
-            txtCount.Text = count.ToString();
         }
 
         private void btnCreateProject_Click(object sender, RoutedEventArgs e)
@@ -97,11 +87,11 @@ namespace ticksy
                 // Do something with the data
             }
         }*/
-        
+
         private bool ValidateConfigXml(out string connStr)
         {
             connStr = null;
-            Dictionary<string,string> configs = null;
+            Dictionary<string, string> configs = null;
 
             // Get the path to the AppData folder
             string appDataPath = Globals.GetAppDataPath();
@@ -186,6 +176,17 @@ namespace ticksy
             }
 
             return false;
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void menuAbout_Click(object sender, RoutedEventArgs e)
+        {
+            AboutDlg dialog = new AboutDlg() { Owner = this };
+            dialog.ShowDialog();
         }
     }
 }
