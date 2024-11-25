@@ -23,6 +23,7 @@ namespace ticksy.Dialogs
 
         public FocusTimerDlg(string entryName, DateTime startDateTime)
         {
+            this.Topmost = true;
             StartDateTime = startDateTime;
             _offset = DateTime.Now - startDateTime;
 
