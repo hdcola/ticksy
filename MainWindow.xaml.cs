@@ -76,5 +76,24 @@ namespace ticksy
                 // Do something with the data
             }
         }*/
+        private void MIFocusTimer_OnClick(object sender, RoutedEventArgs e)
+        {
+            // TODO: Replace startDateTime with actual entry time start time
+            DateTime startDateTime = DateTime.Now.AddMinutes(-2);
+            FocusTimerDlg dialog = new FocusTimerDlg("Entry test task name",  startDateTime);
+            dialog.Owner = this;
+
+            this.WindowState = WindowState.Minimized;
+
+            if (dialog.ShowDialog() == true)
+            {
+                DateTime endDateTime = dialog.EndDateTime;
+                Trace.WriteLine($"End time entry: {endDateTime}");
+
+                // TODO save the endDateTime to database
+            }
+
+            this.WindowState = WindowState.Normal;
+        }
     }
 }

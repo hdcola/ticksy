@@ -1,0 +1,28 @@
+﻿<Window x:Class="ticksy.Dialogs.FocusTimerDlg"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ticksy.Dialogs"
+        Style="{StaticResource MaterialDesignWindow}"
+        mc:Ignorable="d"
+        Title="Entry timer" ResizeMode="NoResize" SizeToContent="WidthAndHeight" Loaded="Window_OnLoaded">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="0" Grid.Row="0" Name="TbEntry" Text="Translate text" TextTrimming="CharacterEllipsis" />
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <TextBlock 
+                Name="TbTimer" 
+                Width="150" 
+                Text="{Binding Path=CurrentTimespan, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" 
+                FontSize="30"
+                />
+            <Separator />
+            <Button Name="BtnStop" Width="auto" Content="Stop" Click="BtnStop_OnClick"/>
+        </StackPanel>
+    </Grid>
+</Window>
