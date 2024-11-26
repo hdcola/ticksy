@@ -256,4 +256,80 @@
 
  
 
+*** 
+
+ 
+
+### *11/26* 
+
+#### Iana 
+
+##### Done since last scrum 
+
+- DataGrid with calculations of Project Summary 
+
+- Added functionality to creating projects 
+
+- Validation of adding tasks and saved to database (need to fix ProjectId) 
+
+##### To do until next scrum 
+
+- Presentation  
+
+##### Need assistance with 
+
+- ProjectId when saving tasks 
+
+ 
+
+#### Tamara 
+
+##### Done since last scrum 
+
+- Partially completed the time tracker tab 
+
+- Setup functional login 
+
+- Move the dashboard to MVVM 
+
+- Styled the main window 
+
+- Partially completed the create task tab 
+
+##### To do until next scrum 
+
+- Complete the time tracker tab 
+
+- Complete the tasks tab 
+
+- Do 1 unit test 
+
+##### Need assistance with 
+
+- 
+
+ 
+
+ 
+
+#### Danny 
+
+##### Done since last scrum 
+
+- Create invoice 
+
+- Preview invoice 
+
+- Export invoice 
+
+##### To do until next scrum 
+
+- Compile the project installer 
+
+- Automating the compilation and distribution of installation packages 
+
+##### Need assistance with 
+
+- 
+
  
