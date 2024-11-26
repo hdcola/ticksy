@@ -9,18 +9,14 @@
         Title="Dashboard" Height="450" Width="800">
     <Grid>
         <TabControl TabStripPlacement="Left" Style="{DynamicResource MaterialDesignTabControl}">
-            <TabItem Name="TbTimeTracker">
+            
+            <TabItem Name="TabTimeEntries">
                 <TabItem.Header>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <materialDesign:PackIcon Kind="Timer" Foreground="Gray" Height="24" Width="24" Margin="0,0,8,0"/>
+                    <StackPanel MouseLeftButtonDown="TimeEntriesStackPanel_MouseLeftButtonDown"  Orientation="Horizontal" VerticalAlignment="Center" Width="100">
+                        <materialDesign:PackIcon Kind="Timer" VerticalContentAlignment="Center" Foreground="Gray" Height="24" Width="24" Margin="0,0,10,0" />
                         <TextBlock Text="Tracker" VerticalAlignment="Center"/>
                     </StackPanel>
                 </TabItem.Header>
-                <TabItem.Content>
-                    <StackPanel Margin="16">
-                        <Label>Time Tracker Content</Label>
-                    </StackPanel>
-                </TabItem.Content>
             </TabItem>
 
             <TabItem Name="TbProjects">

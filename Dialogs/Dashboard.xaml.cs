@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ticksy.Views;
 
 namespace ticksy.Dialogs
 {
@@ -22,6 +25,11 @@ namespace ticksy.Dialogs
         public Dashboard()
         {
             InitializeComponent();
+        }
+        private void TimeEntriesStackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            User user = Globals.User;
+            TabTimeEntries.Content = new TimeEntriesView(user, this);
         }
     }
 }
