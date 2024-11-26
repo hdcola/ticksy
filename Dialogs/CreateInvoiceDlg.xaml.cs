@@ -116,6 +116,10 @@ namespace ticksy.Dialogs
             decimal totalAmount = 0;
             foreach (var item in invoice.Items)
             {
+                if (item.Description == null)
+                {
+                    continue;
+                }
                 Row row = table.AddRow();
                 row.Cells[0].AddParagraph(item.Description);
                 row.Cells[1].AddParagraph(item.Quantity.ToString());
