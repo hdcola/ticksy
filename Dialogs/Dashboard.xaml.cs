@@ -40,5 +40,10 @@ namespace ticksy.Dialogs
             User user = Globals.User;
             TabTimeEntries.Content = new TimeEntriesView(user, this);
         }
+
+        private void ProjectsStackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //TbProjects.Content = new ProjectsView();
+        }
     }
 }
