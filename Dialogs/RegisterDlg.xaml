@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ticksy.Dialogs"
-        Style="{StaticResource MaterialDesignWindow}"
         mc:Ignorable="d" ResizeMode="NoResize" 
         WindowStartupLocation="CenterOwner"
         Title="Registration" SizeToContent="Height" Width="420" >
