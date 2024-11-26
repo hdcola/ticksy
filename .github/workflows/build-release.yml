@@ -7,7 +7,7 @@ on:
 
 permissions:
   contents: write
-  
+
 jobs:
   build:
     name: Build WPF App and Create Installer
@@ -42,3 +42,5 @@ jobs:
         asset_path: output/installer/installer.exe
         asset_name: TicksyInstaller_${{ github.event.release.tag_name }}.exe
         asset_content_type: application/octet-stream
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
