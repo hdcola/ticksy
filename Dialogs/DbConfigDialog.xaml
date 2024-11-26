@@ -7,7 +7,6 @@
         xmlns:local="clr-namespace:ticksy.Dialogs"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Style="{StaticResource MaterialDesignWindow}"
         Background="White"
         Title="Add Database" ResizeMode="NoResize" SizeToContent="Height" Width="420" Loaded="Window_OnLoaded">
     <Grid Margin="10 15">
@@ -48,32 +47,37 @@
                     Grid.Row="0" 
                     Name="TbxServer" 
                     materialDesign:HintAssist.Hint="Server" 
-                    Margin="{StaticResource MarginBottom}" />
+                    Margin="{StaticResource MarginBottom}"
+                    Style="{DynamicResource MaterialDesignFloatingHintTextBox}"/>
                 <!-- Port -->
                 <TextBox 
                     Grid.Row="1" 
                     Name="TbxPort" 
                     materialDesign:HintAssist.Hint="Port"
                     PreviewTextInput="TbxPort_OnPreviewTextInput" 
-                    Margin="{StaticResource MarginBottom}" />
+                    Margin="{StaticResource MarginBottom}"
+                    Style="{DynamicResource MaterialDesignFloatingHintTextBox}"/>
                 <!-- Username -->
                 <TextBox 
                     Grid.Row="2" 
                     Name="TbxUser" 
                     materialDesign:HintAssist.Hint="User name"
-                    Margin="{StaticResource MarginBottom}" />
+                    Margin="{StaticResource MarginBottom}"
+                    Style="{DynamicResource MaterialDesignFloatingHintTextBox}"/>
                 <!-- Password -->
                 <PasswordBox 
                     Grid.Row="3"
                     materialDesign:HintAssist.Hint="Password"
                     Name="TbxPass" 
-                    Margin="{StaticResource MarginBottom}" />
+                    Margin="{StaticResource MarginBottom}"
+                    Style="{DynamicResource MaterialDesignFloatingHintPasswordBox}"/>
                 <!-- Database name -->
                 <TextBox 
                     Grid.Row="4" 
                     Name="TbxDbName" 
                     materialDesign:HintAssist.Hint="Database name"
-                    Margin="{StaticResource MarginBottom}" />
+                    Margin="{StaticResource MarginBottom}"
+                    Style="{DynamicResource MaterialDesignFloatingHintTextBox}"/>
             </Grid>
         </StackPanel>
         <!-- Test Connection -->
@@ -91,9 +95,10 @@
                 Name="BtnSave" 
                 IsDefault="True" 
                 Content="Save" 
-                Margin="10 0" 
+                Margin="0,0, 10, 0" 
+                MinWidth="80"
                 Click="BtnSave_OnClick" 
-                Style="{DynamicResource MaterialDesignOutlinedDarkButton}" />
+                Style="{DynamicResource MaterialDesignFlatDarkBgButton}" />
             <Button 
                 IsCancel="True" 
                 Content="Cancel" 

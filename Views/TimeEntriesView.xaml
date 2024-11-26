@@ -119,17 +119,17 @@
                         IsReadOnly="True"
                         Width="Auto"
                         Header="Task"
-                        Binding="{Binding TaskId}"/>
+                        Binding="{Binding Task}"/>
                     <DataGridTextColumn 
                         IsReadOnly="True"
                         Width="*"
                         Header="Start"
-                        Binding="{Binding StartTime}"/>
+                        Binding="{Binding StartTime, StringFormat=d}"/>
                     <DataGridTextColumn 
                         IsReadOnly="True"
                         Width="*"
                         Header="End"
-                        Binding="{Binding EndTime}"/>
+                        Binding="{Binding EndTime, StringFormat=d}"/>
                     <DataGridTextColumn 
                         IsReadOnly="True"
                         Width="*"
