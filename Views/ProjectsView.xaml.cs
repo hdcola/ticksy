@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ticksy.Dialogs;
 using ticksy.ViewModels;
 
 namespace ticksy.Views
@@ -21,10 +22,24 @@ namespace ticksy.Views
     /// </summary>
     public partial class ProjectsView : UserControl
     {
-        public ProjectsView()
+        public User User { get; }
+        public ProjectsView(User user)
         {
             InitializeComponent();
-            DataContext = new ProjectsViewModel();
+            User = user;
+            DataContext = new ProjectsViewModel(user);
+        }
+
+
+        private void BtnCreateProject_Click(object sender, RoutedEventArgs e)
+        {
+            CreateProjectDlg dialog = new CreateProjectDlg(User);
+            dialog.Owner = Window.GetWindow(this);
+
+            if (dialog.ShowDialog() == true)
+            {
+                // Do something with the data
+            }
         }
     }
 }

@@ -38,11 +38,11 @@ namespace ticksy.Dialogs
         {
             this.Close();
         }
-
+        /*
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             count++;
             txtCount.Text = count.ToString();
-        }
+        }*/
     }
 }

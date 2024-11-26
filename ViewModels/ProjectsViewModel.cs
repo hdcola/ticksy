@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,20 +12,54 @@ namespace ticksy.ViewModels
 {
     public class ProjectsViewModel : AViewModel
     {
-        public List<Project> Projects { get; set; }
+        public ObservableCollection<ProjectSummary> ProjectSummaries { get; set; }
 
-        public ProjectsViewModel()
+        private User User { get; set; }
+
+        public ProjectsViewModel(User user)
         {
-            User user = Globals.User;
+            User = user;
 
             try
             {
-                Projects = Globals.DbContext.Set<Project>().Where(p => p.User == user).ToList();
+                var projects = Globals.DbContext.Set<Project>()
+                    .Where(p => p.UserId == User.UserId)
+                    .Include(p => p.Tasks)
+                    .Include("Tasks.TimeEntries")
+                    .Select(p => new ProjectSummary
+                    {
+                        Name = p.Name,
+                        Description = p.Description,
+                        HourlyRate = p.HourlyRate,
+                        TotalTrackedHours = p.Tasks
+                            .SelectMany(t => t.TimeEntries)
+                            .Where(te => te.StartTime != null && te.EndTime != null)
+                            .Sum(te => (int?)DbFunctions.DiffHours(te.StartTime, te.EndTime) ?? 0),
+                        Amount = p.Tasks
+                            .SelectMany(t => t.TimeEntries)
+                            .Where(te => te.StartTime != null && te.EndTime != null)
+                            .Sum(te => ((int?)DbFunctions.DiffHours(te.StartTime, te.EndTime) ?? 0) * (double)p.HourlyRate)
+                    })
+                    .ToList();
+
+                ProjectSummaries = new ObservableCollection<ProjectSummary>(projects);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("Error while fetching projects: " + ex.Message);
+                if (ex.InnerException != null)
+                    Console.WriteLine("Inner Exception: " + ex.InnerException.Message);
             }
+
+
+        }
+        public class ProjectSummary
+        {
+            public string Name { get; set; }
+            public string Description { get; set; }
+            public decimal HourlyRate { get; set; }
+            public int? TotalTrackedHours { get; set; }
+            public double? Amount { get; set; }
         }
     }
 }
