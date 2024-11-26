@@ -116,9 +116,10 @@ namespace ticksy.Dialogs
 
         private void BtnRegister_OnClick(object sender, RoutedEventArgs e)
         {
-            RegisterDlg dialog = new RegisterDlg();
-            dialog.Show();
             Close();
+            RegisterDlg dialog = new RegisterDlg();
+            dialog.Owner = Owner;
+            dialog.ShowDialog();
         }
     }
 }
