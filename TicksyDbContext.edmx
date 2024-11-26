@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="ProjectId" />
           </Key>
-          <Property Name="ProjectId" Type="bigint" Nullable="false" />
+          <Property Name="ProjectId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="bigint" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Description" Type="text" Nullable="false" />
