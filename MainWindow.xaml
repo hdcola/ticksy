@@ -17,7 +17,6 @@
             <MenuItem Header="Developer">
                 <MenuItem Header="Create Invoice" Click="btnCreateInvoice_Click" />
                 <MenuItem Header="Create Project" Click="btnCreateProject_Click" />
-                <MenuItem Name="MIFocusTimer" Header="Open Focus Entry Timer" Click="MIFocusTimer_OnClick"></MenuItem>
                 <MenuItem Name="MIDashboard" Header="Dashboard" Click="MIDashboard_OnClick"/>
             </MenuItem>
             <MenuItem Header="Help">
