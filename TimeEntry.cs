@@ -20,7 +20,9 @@ namespace ticksy
         public System.DateTime EndTime { get; set; }
         public System.DateTime CreatedAt { get; set; }
         public string Name { get; set; }
+        public long UserId { get; set; }
     
         public virtual Task Task { get; set; }
+        public virtual User User { get; set; }
     }
 }

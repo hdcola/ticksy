@@ -18,6 +18,8 @@ namespace ticksy
         public User()
         {
             this.Projects = new HashSet<Project>();
+            this.Tasks = new HashSet<Task>();
+            this.TimeEntries = new HashSet<TimeEntry>();
         }
     
         public long UserId { get; set; }
@@ -29,5 +31,9 @@ namespace ticksy
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Project> Projects { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Task> Tasks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TimeEntry> TimeEntries { get; set; }
     }
 }

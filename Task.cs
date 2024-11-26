@@ -26,9 +26,11 @@ namespace ticksy
         public int Status { get; set; }
         public System.DateTime CreatedAt { get; set; }
         public System.DateTime UpdatedAt { get; set; }
+        public long UserId { get; set; }
     
         public virtual Project Project { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TimeEntry> TimeEntries { get; set; }
+        public virtual User User { get; set; }
     }
 }
