@@ -189,5 +189,11 @@ namespace ticksy.Dialogs
             TbErrorConfirmPassword.Text = "";
         }
 
+        private void BtnLogin_OnClick(object sender, RoutedEventArgs e)
+        {
+            LoginMainDlg dialog = new LoginMainDlg();
+            dialog.Show();
+            this.Close();
+        }
     }
 }
