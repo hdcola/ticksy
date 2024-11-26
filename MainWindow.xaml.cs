@@ -5,7 +5,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Security;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
 using System.Xml;
 using ticksy.Dialogs;
 
@@ -19,6 +22,7 @@ namespace ticksy
         public MainWindow()
         {
             InitializeComponent();
+            Title = Globals.AppName;
         }
 
         private void btnCreateProject_Click(object sender, RoutedEventArgs e)
@@ -44,15 +48,18 @@ namespace ticksy
         }
 
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
             LoginMainDlg dialog = new LoginMainDlg();
             dialog.Owner = this;
+            dialog.ShowDialog();
+        }
 
-            if (dialog.ShowDialog() == true)
-            {
-                // Do something with the data
-            }
+        private void BtnRegister_Click(object sender, RoutedEventArgs e)
+        {
+            RegisterDlg dialog = new RegisterDlg();
+            dialog.Owner = this;
+            dialog.ShowDialog();
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
@@ -94,6 +101,17 @@ namespace ticksy
             }
 
             this.WindowState = WindowState.Normal;
+        }
+
+        private void MIDashboard_OnClick(object sender, RoutedEventArgs e)
+        {
+            Dashboard dashboard = new Dashboard();
+            dashboard.Owner = this;
+
+            if (dashboard.ShowDialog() == true)
+            {
+                // Do stuff
+            }
         }
     }
 }

@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ticksy"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Style="{StaticResource MaterialDesignWindow}"
+        Title="MainWindow" Height="400" Width="800" ResizeMode="NoResize" Background="{DynamicResource MaterialDesign.Brush.Primary.Light}">
     <Grid>
+        <Image Source="pack://siteoforigin:,,,/banner.png" MaxWidth="800" VerticalAlignment="Top"/>
         <Menu VerticalAlignment="Top">
             <MenuItem Header="File">
                 <MenuItem Name="btnExit" Header="Exit" Click="btnExit_Click" />
@@ -15,11 +18,30 @@
                 <MenuItem Header="Create Invoice" Click="btnCreateInvoice_Click" />
                 <MenuItem Header="Create Project" Click="btnCreateProject_Click" />
                 <MenuItem Name="MIFocusTimer" Header="Open Focus Entry Timer" Click="MIFocusTimer_OnClick"></MenuItem>
+                <MenuItem Name="MIDashboard" Header="Dashboard" Click="MIDashboard_OnClick"/>
             </MenuItem>
             <MenuItem Header="Help">
                 <MenuItem Name="menuAbout" Header="About" Click="menuAbout_Click" />
             </MenuItem>
         </Menu>
-        <Button x:Name="btnLogin" Content="Login" Width="120" Height="36" Click="btnLogin_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="28,210,0,0" />
+        <StackPanel Orientation="Horizontal" Margin="100,0" VerticalAlignment="Bottom" Height="80">
+            <Button 
+                Name="BtnLogin" 
+                Content="Login" 
+                Width="120" 
+                Height="36" 
+                Click="BtnLogin_Click" 
+                Margin="0,0,10,0"
+                Style="{DynamicResource MaterialDesignFlatDarkBgButton}"
+                VerticalAlignment="Center" />
+            <Button 
+                Name="BtnRegister" 
+                Content="Register" 
+                Width="120" 
+                Height="36" 
+                Click="BtnRegister_Click" 
+                Style="{DynamicResource MaterialDesignOutlinedDarkButton}"
+                VerticalAlignment="Center"  />
+        </StackPanel>
     </Grid>
 </Window>
