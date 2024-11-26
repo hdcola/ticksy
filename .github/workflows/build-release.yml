@@ -1,0 +1,46 @@
+name: Build and Package WPF App
+
+on:
+  release:
+    types:
+      - created
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build WPF App and Create Installer
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup MSBuild with .NET Framework 4.8
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Setup NuGet
+      uses: nuget/setup-nuget@v2
+
+    - name: Restore dependencies
+      run: nuget restore ticksy.sln 
+
+
+    - name: Build the project
+      run: msbuild ticksy.sln /p:Configuration=Release /p:OutDir=publish\
+
+    - name: Package with Inno Setup
+      run: |
+        iscc /Qp installer_script.iss
+      shell: cmd
+
+    - name: Upload to GitHub Releases
+      uses: actions/upload-release-asset@v1
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: output/installer/installer.exe
+        asset_name: TicksyInstaller_${{ github.event.release.tag_name }}.exe
+        asset_content_type: application/octet-stream
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
