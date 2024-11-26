@@ -52,7 +52,8 @@ namespace ticksy.Dialogs
             InitializeComponent();
         }
 
-        private void BtnRegister_Click(object sender, RoutedEventArgs e)
+
+        private async void BtnRegister_Click(object sender, RoutedEventArgs e)
         {
             string errors = "";
 
@@ -63,8 +64,54 @@ namespace ticksy.Dialogs
                 // MessageBox.Show(this, $"Please enter valid data: {errors}", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return; 
             }
-            Console.WriteLine("Validation successful");
+            Console.WriteLine("Inputs validation successful");
+
+            try
+            {
+                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(TbPassword.Password.Trim());
+
+                string avatarUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/240px-Default_pfp.svg.png";
+                byte[] avatarBytes = await DownloadImageAsync(avatarUrl);
+                
+                // TODO: check if the email already exists in database
+                var newUser = new User
+                {
+                    Username = TbUsername.Text.Trim(),
+                    Email = TbEmail.Text.Trim(),
+                    Password = hashedPassword,
+                    Avatar = avatarBytes,
+                    CreatedAt = DateTime.Now
+                };
+
+                Globals.DbContext.Set<User>().Add(newUser);
+                Globals.DbContext.SaveChanges();
+
+                // TODO: make a custom dialog
+                MessageBox.Show(this, "Registration successful!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                Console.WriteLine("Registration successful!");
+                this.Close();
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+            {
+                foreach (var validationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        Console.WriteLine($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, $"Registration failed: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Console.WriteLine($"Registration failed: {ex.Message}");
+
+            }
+
         }
+
+
         
 
         public bool isRegisterDataValid(out string errorsString)
@@ -142,5 +189,11 @@ namespace ticksy.Dialogs
             TbErrorConfirmPassword.Text = "";
         }
 
+        private void BtnLogin_OnClick(object sender, RoutedEventArgs e)
+        {
+            LoginMainDlg dialog = new LoginMainDlg();
+            dialog.Show();
+            this.Close();
+        }
     }
 }

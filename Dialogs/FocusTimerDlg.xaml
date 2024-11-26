@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ticksy.Dialogs"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Style="{StaticResource MaterialDesignWindow}"
         mc:Ignorable="d"
         Title="Entry timer" ResizeMode="NoResize" SizeToContent="WidthAndHeight" Loaded="Window_OnLoaded">
@@ -21,7 +22,15 @@
                 Text="{Binding Path=CurrentTimespan, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" 
                 FontSize="30" />
             <Separator />
-            <Button Name="BtnStop" Width="auto" Content="Stop" Click="BtnStop_OnClick"/>
+            <Button 
+                Name="BtnStop" 
+                Click="BtnStop_OnClick">
+                <materialDesign:PackIcon 
+                    Kind="Stop" 
+                    Foreground="White" 
+                    VerticalAlignment="Center" 
+                    Height="26" Width="26"/>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>

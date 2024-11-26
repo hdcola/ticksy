@@ -26,13 +26,10 @@ namespace ticksy.Dialogs
 
         private void BtnLoginWithEmail_Click(object sender, RoutedEventArgs e)
         {
+            Close();
             LoginWithEmailDlg dialog = new LoginWithEmailDlg();
-            dialog.Owner = this;
-
-            if (dialog.ShowDialog() == true)
-            {
-                // Do something with the data
-            }
+            dialog.Owner = Owner;
+            dialog.ShowDialog();
         }
 
         private void BtnLoginWithGoogle_Click(object sender, RoutedEventArgs e)
@@ -42,13 +39,10 @@ namespace ticksy.Dialogs
 
         private void BtnSignUp_Click(object sender, RoutedEventArgs e)
         {
+            Close();
             RegisterDlg dialog = new RegisterDlg();
-            dialog.Owner = this;
-
-            if (dialog.ShowDialog() == true)
-            {
-                // Do something with the data
-            }
+            dialog.Owner = Owner;
+            dialog.ShowDialog();
         }
     }
 }
