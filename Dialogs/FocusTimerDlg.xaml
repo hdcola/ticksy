@@ -19,8 +19,7 @@
                 Name="TbTimer" 
                 Width="150" 
                 Text="{Binding Path=CurrentTimespan, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" 
-                FontSize="30"
-                />
+                FontSize="30" />
             <Separator />
             <Button Name="BtnStop" Width="auto" Content="Stop" Click="BtnStop_OnClick"/>
         </StackPanel>

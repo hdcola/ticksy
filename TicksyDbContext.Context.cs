@@ -20,8 +20,7 @@ namespace ticksy
                 @"metadata=res://*/TicksyDbContext.csdl|res://*/TicksyDbContext.ssdl|res://*/TicksyDbContext.msl;provider=System.Data.SqlClient;provider connection string='{0}'", connStr))
         {
         }
-
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

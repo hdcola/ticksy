@@ -7,11 +7,11 @@
       <Diagram DiagramId="9a7864eb24014de199ee41c51b01b64e" Name="Diagram1">
         <EntityTypeShape EntityType="ticksydbModel.Project" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ticksydbModel.Task" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ticksydbModel.TimeEntry" Width="1.5" PointX="7.5" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ticksydbModel.User" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <AssociationConnector Association="ticksydbModel.FK_Projects_Users" ManuallyRouted="false" />
         <AssociationConnector Association="ticksydbModel.FK_Tasks_Projects1" ManuallyRouted="false" />
-        <AssociationConnector Association="ticksydbModel.FK_timeEntries_tasks" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ticksydbModel.TimeEntry" Width="1.5" PointX="7.5" PointY="1.25" />
+        <AssociationConnector Association="ticksydbModel.FK_timeEntries_tasks" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

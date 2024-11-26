@@ -18,8 +18,8 @@ namespace ticksy
         public long TaskId { get; set; }
         public System.DateTime StartTime { get; set; }
         public System.DateTime EndTime { get; set; }
-        public string Description { get; set; }
         public System.DateTime CreatedAt { get; set; }
+        public string Name { get; set; }
     
         public virtual Task Task { get; set; }
     }
