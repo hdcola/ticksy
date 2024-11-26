@@ -146,6 +146,7 @@
     <Compile Include="Dialogs\FocusTimerDlg.xaml.cs">
       <DependentUpon>FocusTimerDlg.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Invoice.cs" />
     <Compile Include="Helpers\AViewModel.cs" />
     <Compile Include="Helpers\XmlHelper.cs" />
     <Compile Include="Project.cs">
