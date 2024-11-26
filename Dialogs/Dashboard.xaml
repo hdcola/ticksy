@@ -39,7 +39,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Label FontSize="16" FontWeight="Bold" Grid.Column="0">Projects</Label>
-                            <Button Name="BtnCreateProject" Content="Create new project"  Grid.Column="1" HorizontalAlignment="Right" Height="26" Width="140" FontSize="12"/>
+                            <Button Name="BtnCreateProject" Content="Create new project"  Grid.Column="1" HorizontalAlignment="Right" Height="34" Width="150" FontSize="14"/>
                         </Grid>
 
                         <Grid Margin="0,20,0,0">

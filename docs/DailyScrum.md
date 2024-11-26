@@ -140,8 +140,7 @@
 
 ##### Done since last scrum 
 
-- Created helper validation function for inputs
-- Checked the register functionality - saved to database 
+- Created helper validation function for inputs 
 
 ##### To do until next scrum 
 
@@ -183,7 +182,9 @@
 
 ##### To do until next scrum 
 
--  
+- add menu to mainWindow 
+
+- add About Dialog 
 
 ##### Need assistance with 
 
@@ -192,5 +193,67 @@
  
 
 *** 
+
+ 
+
+### *11/25* 
+
+#### Iana 
+
+##### Done since last scrum 
+
+- Dashboard design, finished tab for Projects 
+
+##### To do until next scrum 
+
+- Prepare tests for registering and log in 
+
+- Add functionality to Projects tab (ListView to show from database) 
+
+##### Need assistance with 
+
+- 
+
+ 
+
+#### Tamara 
+
+##### Done since last scrum 
+
+- Fix how the application starts, xml validation first, then main window flow 
+
+- Created the timer dialog 
+
+##### To do until next scrum 
+
+- Complete the time tracker tab 
+
+- Setup logged in user into Globals 
+
+##### Need assistance with 
+
+- 
+
+ 
+
+ 
+
+#### Danny 
+
+##### Done since last scrum 
+
+- add menu to mainWindow 
+
+- add About Dialog 
+
+##### To do until next scrum 
+
+- Work on the invoice pdf dialog 
+
+##### Need assistance with 
+
+- 
+
+ 
 
  

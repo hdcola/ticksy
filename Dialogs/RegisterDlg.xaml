@@ -5,15 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ticksy.Dialogs"
-        mc:Ignorable="d" ResizeMode="NoResize"
-        Title="Register" Height="380" Width="400" >
+        mc:Ignorable="d" ResizeMode="NoResize" 
+        WindowStartupLocation="CenterOwner"
+        Title="Register" Height="380" Width="420" >
     <Grid Margin="10">
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*"/>
                 <ColumnDefinition Width="20*"/>
                 <ColumnDefinition Width="5*"/>
-            </Grid.ColumnDefinitions>            
+            </Grid.ColumnDefinitions>
             <TextBlock Height="23" HorizontalAlignment="Center"
                     Name="textBlockHeading"  Grid.Column="1"
                     Text="Registration:" Margin="0,0,0,0" VerticalAlignment="Top" FontSize="14" 
@@ -43,9 +45,9 @@
         </Grid>
 
         <Grid Margin="0,40,0,0" Background="White" 
-              Grid.Column="1"
-              VerticalAlignment="Top" 
-              HorizontalAlignment="Center">
+       Grid.Column="1"
+       VerticalAlignment="Top" 
+       HorizontalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -58,14 +60,14 @@
 
             <StackPanel Margin="0,0,0,0" Height="44" VerticalAlignment="Center" Grid.ColumnSpan="2">
                 <Border CornerRadius="4" 
-                         Background="White" 
-                         Padding="4">
-                    <TextBox Name="TbFirstName" 
-                              materialDesign:HintAssist.Hint="First Name" 
-                              Height="24" 
-                              Padding="4,0" 
-                              VerticalAlignment="Top" 
-                              Style="{DynamicResource MaterialDesignFloatingHintTextBox}" >
+                  Background="White" 
+                  Padding="4">
+                    <TextBox Name="TbUsername" TextChanged="TbUsername_TextChanged"
+                       materialDesign:HintAssist.Hint="Username" 
+                       Height="24" 
+                       Padding="4,0" 
+                       VerticalAlignment="Top" 
+                       Style="{DynamicResource MaterialDesignFloatingHintTextBox}" >
                         <TextBox.Resources>
                             <Style TargetType="TextBlock">
                                 <Setter Property="FontSize" Value="14" />
@@ -75,53 +77,27 @@
                     </TextBox>
                 </Border>
 
-                <TextBlock Name="TbErrorFirstName" 
-                Text="" 
-                Foreground="Red" 
-                FontSize="9" 
-                Margin="4,0,0,0" 
-                Visibility="Visible" />
+                <TextBlock Name="TbErrorUsername" 
+                         Text="" 
+                         Foreground="Red" 
+                         FontSize="9" 
+                         Margin="4,0,0,0" 
+                         Visibility="Visible" />
             </StackPanel>
 
 
-            <StackPanel Grid.Row="1" VerticalAlignment="Center" Height="44" Grid.ColumnSpan="2">
-                <Border CornerRadius="4" 
-                        Background="White" 
-                        Padding="4">
-                    <TextBox Name="TbLastName" 
-                             materialDesign:HintAssist.Hint="Last Name" 
-                             Height="24" 
-                             Padding="4,0" 
-                             VerticalAlignment="Top" 
-                             Style="{DynamicResource MaterialDesignFloatingHintTextBox}" >
-                        <TextBox.Resources>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="FontSize" Value="14" />
-                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
-                            </Style>
-                        </TextBox.Resources>
-                    </TextBox>
-                </Border>
-
-                <TextBlock Name="TbErrorLastName" 
-                           Text="" 
-                           Foreground="Red" 
-                           FontSize="9" 
-                           Margin="4,0,0,0" 
-                           Visibility="Visible" />
-            </StackPanel>
 
 
             <StackPanel VerticalAlignment="Center" Height="44" Grid.Row="2" Grid.ColumnSpan="2">
                 <Border CornerRadius="4" 
-                        Background="White" 
-                        Padding="4">
-                    <TextBox Name="TbEmail" 
-                             materialDesign:HintAssist.Hint="Email" 
-                             Height="24" 
-                             Padding="4,0" 
-                             VerticalAlignment="Top" 
-                             Style="{DynamicResource MaterialDesignFloatingHintTextBox}" >
+                 Background="White" 
+                 Padding="4">
+                    <TextBox Name="TbEmail" TextChanged="TbEmail_TextChanged"
+                      materialDesign:HintAssist.Hint="Email" 
+                      Height="24" 
+                      Padding="4,0" 
+                      VerticalAlignment="Top" 
+                      Style="{DynamicResource MaterialDesignFloatingHintTextBox}" >
                         <TextBox.Resources>
                             <Style TargetType="TextBlock">
                                 <Setter Property="FontSize" Value="14" />
@@ -132,11 +108,11 @@
                 </Border>
 
                 <TextBlock Name="TbErrorEmail" 
-                           Text="" 
-                           Foreground="Red" 
-                           FontSize="9" 
-                           Margin="4,0,0,0" 
-                           Visibility="Visible" />
+                    Text="" 
+                    Foreground="Red" 
+                    FontSize="9" 
+                    Margin="4,0,0,0" 
+                    Visibility="Visible" />
             </StackPanel>
 
 
@@ -144,63 +120,67 @@
                 <Border CornerRadius="4" 
                         Background="White" 
                         Padding="4">
-                    <TextBox Name="TbPassword" 
-                             materialDesign:HintAssist.Hint="Password" 
-                             Height="24" 
-                             Padding="4,0" 
-                             VerticalAlignment="Top" 
-                             Style="{DynamicResource MaterialDesignFloatingHintTextBox}" >
-                        <TextBox.Resources>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="FontSize" Value="14" />
-                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
-                            </Style>
-                        </TextBox.Resources>
-                    </TextBox>
+                <PasswordBox Name="TbPassword" 
+                     PasswordChanged="TbPassword_PasswordChanged"
+                     materialDesign:HintAssist.Hint="Password"
+                     Height="24" 
+                     Padding="4,0" 
+                     VerticalAlignment="Top" 
+                     Style="{DynamicResource MaterialDesignFloatingHintPasswordBox}">
+                    <PasswordBox.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontSize" Value="14" />
+                            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+                        </Style>
+                    </PasswordBox.Resources>
+                </PasswordBox>
                 </Border>
 
                 <TextBlock Name="TbErrorPassword" 
-                           Text="" 
-                           Foreground="Red" 
-                           FontSize="9" 
-                           Margin="4,0,0,0" 
-                           Visibility="Visible" />
+               Text="" 
+               Foreground="Red" 
+               FontSize="9" 
+               Margin="4,0,0,0" 
+               Visibility="Visible" />
             </StackPanel>
+
+
 
             <StackPanel VerticalAlignment="Center" Height="44" Grid.Row="4" Grid.ColumnSpan="2">
                 <Border CornerRadius="4" 
-                        Background="White" 
-                        Padding="4">
-                    <TextBox Name="TbConfirmPassword" 
-                             materialDesign:HintAssist.Hint="Confirm password" 
-                             Height="24" 
-                             Padding="4,0" 
-                             VerticalAlignment="Top" 
-                             Style="{DynamicResource MaterialDesignFloatingHintTextBox}" >
-                        <TextBox.Resources>
+                 Background="White" 
+                 Padding="4">
+                    <PasswordBox Name="TbConfirmPassword" 
+                              PasswordChanged="TbConfirmPassword_PasswordChanged"           
+                              materialDesign:HintAssist.Hint="Confirm password" 
+                              Height="24" 
+                              Padding="4,0" 
+                              VerticalAlignment="Top" 
+                              Style="{DynamicResource MaterialDesignFloatingHintPasswordBox}" >
+                        <PasswordBox.Resources>
                             <Style TargetType="TextBlock">
                                 <Setter Property="FontSize" Value="14" />
                                 <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
                             </Style>
-                        </TextBox.Resources>
-                    </TextBox>
+                        </PasswordBox.Resources>
+                    </PasswordBox>
                 </Border>
 
                 <TextBlock Name="TbErrorConfirmPassword" 
-                           Text="" 
-                           Foreground="Red" 
-                           FontSize="9" 
-                           Margin="4,0,0,0" 
-                           Visibility="Visible" />
+                    Text="" 
+                    Foreground="Red" 
+                    FontSize="9" 
+                    Margin="4,0,0,0" 
+                    Visibility="Visible" />
             </StackPanel>
 
             <StackPanel Margin="0,15,0,0" Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="2">
-                <Button Content="Register" Name="BtnSubmit" Click="BtnSubmit_Click"  Height="26" Width="80" 
-                        HorizontalAlignment="Left" Margin="0,0,0,0"
-                VerticalAlignment="Top" FontSize ="12" />
-                <Button Content="Cancel" Name="BtnCancel"  IsCancel="True" Height="26" Width="80" 
-                        HorizontalAlignment="Left" Margin="30,0,0,0"
-                VerticalAlignment="Top" FontSize ="12"/>
+                <Button Content="Register" Name="BtnRegister" Click="BtnRegister_Click"  Height="26" Width="80" 
+                 HorizontalAlignment="Left" Margin="0,0,0,0"
+         VerticalAlignment="Top" FontSize ="12" />
+                <Button Content="Cancel" Name="BtnCancel" IsCancel="True" Height="26" Width="80" 
+                 HorizontalAlignment="Left" Margin="30,0,0,0"
+         VerticalAlignment="Top" FontSize ="12"/>
             </StackPanel>
 
 
