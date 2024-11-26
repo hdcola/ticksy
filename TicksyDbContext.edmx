@@ -24,6 +24,7 @@
           </Key>
           <Property Name="TaskId" Type="bigint" Nullable="false" />
           <Property Name="ProjectId" Type="bigint" Nullable="false" />
+          <Property Name="UserId" Type="bigint" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
           <Property Name="CreatedAt" Type="datetime" Nullable="false" />
@@ -35,6 +36,7 @@
           </Key>
           <Property Name="TimeEntryId" Type="bigint" Nullable="false" />
           <Property Name="TaskId" Type="bigint" Nullable="false" />
+          <Property Name="UserId" Type="bigint" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="StartTime" Type="datetime" Nullable="false" />
           <Property Name="EndTime" Type="datetime" Nullable="false" />
@@ -63,7 +65,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Tasks_Projects1">
+        <Association Name="FK_Tasks_Projects">
           <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
           <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
           <ReferentialConstraint>
@@ -72,6 +74,18 @@
             </Principal>
             <Dependent Role="Tasks">
               <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasks_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -87,6 +101,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TimeEntries_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="TimeEntries" Type="Self.TimeEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TimeEntries">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ticksydbModelStoreContainer">
           <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
@@ -96,12 +122,20 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Projects" EntitySet="Projects" />
           </AssociationSet>
-          <AssociationSet Name="FK_Tasks_Projects1" Association="Self.FK_Tasks_Projects1">
+          <AssociationSet Name="FK_Tasks_Projects" Association="Self.FK_Tasks_Projects">
             <End Role="Projects" EntitySet="Projects" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasks_Users" Association="Self.FK_Tasks_Users">
+            <End Role="Users" EntitySet="Users" />
             <End Role="Tasks" EntitySet="Tasks" />
           </AssociationSet>
           <AssociationSet Name="FK_TimeEntries_Tasks" Association="Self.FK_TimeEntries_Tasks">
             <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="TimeEntries" EntitySet="TimeEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimeEntries_Users" Association="Self.FK_TimeEntries_Users">
+            <End Role="Users" EntitySet="Users" />
             <End Role="TimeEntries" EntitySet="TimeEntries" />
           </AssociationSet>
         </EntityContainer>
@@ -136,6 +170,8 @@
           <Property Name="UpdatedAt" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Project" Relationship="Self.FK_Tasks_Projects1" FromRole="Tasks" ToRole="Projects" />
           <NavigationProperty Name="TimeEntries" Relationship="Self.FK_timeEntries_tasks" FromRole="Tasks" ToRole="TimeEntries" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="ticksydbModel.FK_Tasks_Users" FromRole="Task" ToRole="User" />
         </EntityType>
         <EntityType Name="TimeEntry">
           <Key>
@@ -148,6 +184,8 @@
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Task" Relationship="Self.FK_timeEntries_tasks" FromRole="TimeEntries" ToRole="Tasks" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="ticksydbModel.FK_TimeEntries_Users" FromRole="TimeEntry" ToRole="User" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -160,6 +198,8 @@
           <Property Name="Avatar" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Projects" Relationship="Self.FK_Projects_Users" FromRole="Users" ToRole="Projects" />
+          <NavigationProperty Name="Tasks" Relationship="ticksydbModel.FK_Tasks_Users" FromRole="User" ToRole="Task" />
+          <NavigationProperty Name="TimeEntries" Relationship="ticksydbModel.FK_TimeEntries_Users" FromRole="User" ToRole="TimeEntry" />
         </EntityType>
         <Association Name="FK_Projects_Users">
           <End Role="Users" Type="Self.User" Multiplicity="1" />
@@ -214,7 +254,39 @@
             <End Role="Tasks" EntitySet="Tasks" />
             <End Role="TimeEntries" EntitySet="TimeEntries" />
           </AssociationSet>
+          <AssociationSet Name="FK_Tasks_Users" Association="ticksydbModel.FK_Tasks_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Task" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimeEntries_Users" Association="ticksydbModel.FK_TimeEntries_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="TimeEntry" EntitySet="TimeEntries" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Tasks_Users">
+          <End Type="ticksydbModel.User" Role="User" Multiplicity="1" />
+          <End Type="ticksydbModel.Task" Role="Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimeEntries_Users">
+          <End Type="ticksydbModel.User" Role="User" Multiplicity="1" />
+          <End Type="ticksydbModel.TimeEntry" Role="TimeEntry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TimeEntry">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -238,6 +310,7 @@
           <EntitySetMapping Name="Tasks">
             <EntityTypeMapping TypeName="ticksydbModel.Task">
               <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="TaskId" ColumnName="TaskId" />
                 <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -250,6 +323,7 @@
           <EntitySetMapping Name="TimeEntries">
             <EntityTypeMapping TypeName="ticksydbModel.TimeEntry">
               <MappingFragment StoreEntitySet="TimeEntries">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="TimeEntryId" ColumnName="TimeEntryId" />
                 <ScalarProperty Name="TaskId" ColumnName="TaskId" />

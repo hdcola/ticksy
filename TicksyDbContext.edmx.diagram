@@ -12,6 +12,8 @@
         <AssociationConnector Association="ticksydbModel.FK_Tasks_Projects1" ManuallyRouted="false" />
         <EntityTypeShape EntityType="ticksydbModel.TimeEntry" Width="1.5" PointX="7.5" PointY="1.25" />
         <AssociationConnector Association="ticksydbModel.FK_timeEntries_tasks" />
+        <AssociationConnector Association="ticksydbModel.FK_Tasks_Users" />
+        <AssociationConnector Association="ticksydbModel.FK_TimeEntries_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
