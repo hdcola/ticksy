@@ -13,8 +13,6 @@
             <TextBlock FontSize="14" Text="Developed by Tamara, Danny, Iana"/>
             <TextBlock FontSize="12" Margin="0,10" Text="The world is a better place because of you."/>
             <Button Content="Close" Width="100" Margin="10" HorizontalAlignment="Center" Click="CloseButton_Click"/>
-            <!--<Button x:Name="btnAdd" Content="Add" Click="btnAdd_Click" Width="100" Height="36" />
-            <TextBlock Name="txtCount"  Text="0" Height="36"/>-->
         </StackPanel>
     </Grid>
 </Window>
