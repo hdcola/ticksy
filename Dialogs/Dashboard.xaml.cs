@@ -26,6 +26,15 @@ namespace ticksy.Dialogs
         {
             InitializeComponent();
         }
+        private void TasksStackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Project project = Globals.DbContext.Set<Project>().Find(1);
+            if (project != null)
+            {
+                TabTasks.Content = new TasksView(project);
+            }
+        }
+
         private void TimeEntriesStackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             User user = Globals.User;

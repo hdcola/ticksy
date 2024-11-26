@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="ticksy.Views.TasksView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ticksy.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Width="200" HorizontalAlignment="Left" Orientation="Vertical">
+            <Button 
+            Name="BtnGoToProjects"
+            Content="Projects"
+            HorizontalContentAlignment="Left">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <TextBlock TextDecorations="Underline" Padding="5,0">
+                        <ContentPresenter/>
+                        </TextBlock>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Foreground" Value="Navy"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Foreground" Value="Blue"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Label 
+                FontSize="16" 
+                FontWeight="Bold" 
+                Content="Tasks"/>
+                <Label 
+                Name="LblProjectName"
+                Content="Project Name"/>
+        </StackPanel>
+        <Grid Grid.Row="1" Margin="0,20,0,50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox
+                Grid.Column="0"
+                Margin="5,0,20,0"
+                Padding="5"
+                Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+                materialDesign:HintAssist.Hint="Add a new task"/>
+            <Button 
+                Grid.Column="1"
+                Width="100"
+                Content="ADD"/>
+        </Grid>
+
+        <StackPanel Grid.Row="2" Orientation="Vertical">
+            <Label Padding="15, 10" Content="Tasks" Background="{DynamicResource MaterialDesign.Brush.Primary.Light}"/>
+            <DataGrid 
+                ItemsSource="{Binding Tasks}"
+                HorizontalAlignment="Stretch"
+                CanUserAddRows="False"
+                AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn 
+                        Width="*"
+                        Header="Name"
+                        Binding="{Binding Name}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</UserControl>

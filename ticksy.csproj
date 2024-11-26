@@ -175,7 +175,11 @@
     <Compile Include="User.cs">
       <DependentUpon>TicksyDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\TasksViewModel.cs" />
     <Compile Include="ViewModels\TimeEntriesViewModel.cs" />
+    <Compile Include="Views\TasksView.xaml.cs">
+      <DependentUpon>TasksView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TimeEntriesView.xaml.cs">
       <DependentUpon>TimeEntriesView.xaml</DependentUpon>
     </Compile>
@@ -247,6 +251,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\TasksView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\TimeEntriesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
