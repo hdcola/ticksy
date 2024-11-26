@@ -22,7 +22,7 @@
           <Key>
             <PropertyRef Name="TaskId" />
           </Key>
-          <Property Name="TaskId" Type="bigint" Nullable="false" />
+          <Property Name="TaskId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProjectId" Type="bigint" Nullable="false" />
           <Property Name="UserId" Type="bigint" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
@@ -34,7 +34,7 @@
           <Key>
             <PropertyRef Name="TimeEntryId" />
           </Key>
-          <Property Name="TimeEntryId" Type="bigint" Nullable="false" />
+          <Property Name="TimeEntryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TaskId" Type="bigint" Nullable="false" />
           <Property Name="UserId" Type="bigint" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
