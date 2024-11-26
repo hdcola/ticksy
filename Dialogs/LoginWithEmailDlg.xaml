@@ -6,28 +6,47 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ticksy.Dialogs"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterOwner"        
-        Title="Login in" Height="300" Width="400">
-    <Grid Margin="10,30,0,0">
+        WindowStartupLocation="CenterOwner"
+        Title="Login" SizeToContent="Height" Width="420">
+    <Grid Margin="10,15">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
-        <Grid>
+        <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Height="23" HorizontalAlignment="Center"
-                 Name="textBlockHeading"  Grid.Column="1"
-                 Text="Log in:" Margin="0,0,0,0" VerticalAlignment="Top" FontSize="14" 
-                 FontStretch="ExtraCondensed"/>
-
-            <Button Name="BtnRegister" Content="Register" Cursor="Hand" Margin="0,0,0,0" 
-             VerticalAlignment="Top" 
-             HorizontalAlignment="Center" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock 
+                Background="AliceBlue"
+                Grid.Row="0"
+                HorizontalAlignment="Center"
+                Name="textBlockHeading" 
+                Grid.Column="1"
+                Text="Log in" 
+                VerticalAlignment="Top" 
+                FontSize="16"/>
+            <Button 
+                Grid.Row="0"
+                Name="BtnRegister" 
+                Content="Register" 
+                Cursor="Hand" 
+                Margin="0,0,0,0" 
+                VerticalAlignment="Top" 
+                HorizontalAlignment="Center"
+                Click="BtnRegister_OnClick"
+                Grid.Column="2">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <TextBlock TextDecorations="Underline">
-                 <ContentPresenter/>
+                            <ContentPresenter/>
                         </TextBlock>
                     </ControlTemplate>
                 </Button.Template>
@@ -42,22 +61,25 @@
                     </Style>
                 </Button.Style>
             </Button>
+            <TextBlock 
+                Grid.Row="1"
+                Grid.Column="1"
+                Name="TbErrorLogin"
+                Height="20"
+                Margin="0,20,0,0"
+                Foreground="Red"
+                HorizontalAlignment="Center"/>
         </Grid>
 
-        <Grid Margin="0,40,0,0" Background="White" 
-            Grid.Column="1"
-            VerticalAlignment="Top" 
-            HorizontalAlignment="Center">
+        <Grid Grid.Row="1" Margin="50, 0, 50, 0" VerticalAlignment="Top">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
 
-
-            <StackPanel VerticalAlignment="Center" Height="44" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,5">
+            <StackPanel VerticalAlignment="Center" Grid.Row="0" Margin="0,0,0,5">
                 <Border CornerRadius="4" 
-                      Background="White" 
                       Padding="4">
                     <TextBox Name="TbEmail" 
                        TextChanged="TbEmail_TextChanged"
@@ -76,17 +98,16 @@
                 </Border>
 
                 <TextBlock Name="TbErrorEmail" 
-                 Text="" 
-                 Foreground="Red" 
-                 FontSize="9" 
-                 Margin="4,0,0,0" 
-                 Visibility="Visible" />
+                     Text="" 
+                     Foreground="Red" 
+                     FontSize="12" 
+                     Margin="4,0,0,0" 
+                     Visibility="Visible" />
             </StackPanel>
 
 
-            <StackPanel VerticalAlignment="Center" Height="44" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,0,5">
+            <StackPanel VerticalAlignment="Center" Grid.Row="1">
                 <Border CornerRadius="4" 
-                     Background="White" 
                      Padding="4">
                     <PasswordBox Name="TbPassword" 
                   PasswordChanged="TbPassword_PasswordChanged"
@@ -104,27 +125,39 @@
                     </PasswordBox>
                 </Border>
 
-                <TextBlock Name="TbErrorPassword" 
-            Text="" 
-            Foreground="Red" 
-            FontSize="9" 
-            Margin="4,0,0,0" 
-            Visibility="Visible" />
+                <TextBlock 
+                    Name="TbErrorPassword" 
+                    Text="" 
+                    Foreground="Red" 
+                    FontSize="12" 
+                    Margin="4,0,0,0" 
+                    Visibility="Visible" />
             </StackPanel>
 
+            <Grid Grid.Row="2" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-
-
-            <StackPanel Margin="0,15,0,0" Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2">
-                <Button Content="Login" Name="BtnLogin" Click="BtnLogin_Click"  Height="26" Width="80" 
-              HorizontalAlignment="Left" Margin="0,0,0,0"
-      VerticalAlignment="Top" FontSize ="12" />
-                <Button Content="Cancel" Name="BtnCancel" IsCancel="True" Height="26" Width="80" 
-              HorizontalAlignment="Left" Margin="30,0,0,0"
-      VerticalAlignment="Top" FontSize ="12"/>
-            </StackPanel>
-
-
+                <Button 
+                    Grid.Column="0"
+                    Content="Login" 
+                    Name="BtnLogin" 
+                    Click="BtnLogin_Click"  
+                    Padding="15,2"
+                    Style="{DynamicResource MaterialDesignFlatDarkBgButton}"
+                    VerticalAlignment="Top" />
+                <Button 
+                    Grid.Column="1"
+                    Content="Cancel" 
+                    Name="BtnCancel" 
+                    IsCancel="True" 
+                    Padding="15,2"
+                    Margin="40,0,0,0"
+                    Style="{DynamicResource MaterialDesignOutlinedDarkButton}"
+                    VerticalAlignment="Top" />
+            </Grid>
         </Grid>
     </Grid>
 </Window>

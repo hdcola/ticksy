@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using ticksy.Helpers;
 
 namespace ticksy.Dialogs
@@ -41,6 +31,7 @@ namespace ticksy.Dialogs
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
+            TbErrorLogin.Text = "";
             string errors = "";
 
             if (!isLoginDataValid(out errors))
@@ -51,12 +42,41 @@ namespace ticksy.Dialogs
             }
             Console.WriteLine("Inputs validation successful");
 
-            Dashboard dialog = new Dashboard();
-            dialog.Owner = this;
-
-            if (dialog.ShowDialog() == true)
+            try
             {
-                // Do something with the data
+                // Get user matching email
+                var query = from User in Globals.DbContext.Set<User>() where User.Email == TbEmail.Text select User;
+                
+                var user = query.FirstOrDefault();
+                if (user == null)
+                {
+                    throw new ArgumentException("Invalid credentials");
+                }
+
+                var isValid = BCrypt.Net.BCrypt.Verify(TbPassword.Password, user.Password);
+                if (isValid)
+                {
+                    Globals.User = user;
+                    Console.WriteLine($"User {user.Username} is now logged in.");
+
+                    Dashboard dialog = new Dashboard();
+                    dialog.Show();
+                    Close();
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid credentials");
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                TbErrorLogin.Text = ex.Message;
+            }
+            catch (Exception ex)
+            {
+                // Failed to find user
+                TbErrorLogin.Text = "Something went wrong. Try again later.";
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -92,6 +112,14 @@ namespace ticksy.Dialogs
         private void TbEmail_TextChanged(object sender, TextChangedEventArgs e)
         {            
             TbErrorEmail.Text = "";
+        }
+
+        private void BtnRegister_OnClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+            RegisterDlg dialog = new RegisterDlg();
+            dialog.Owner = Owner;
+            dialog.ShowDialog();
         }
     }
 }

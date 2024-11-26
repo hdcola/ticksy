@@ -16,5 +16,8 @@ namespace ticksy
         }
 
         internal static DbContext DbContext;
+
+        // User that is logged in
+        internal static User User { get; set; }
     }
 }
