@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ticksy.Helpers;
 
 namespace ticksy.Dialogs
 {
@@ -20,39 +21,77 @@ namespace ticksy.Dialogs
     /// </summary>
     public partial class LoginWithEmailDlg : Window
     {
+        // added to be able to access in unit tests
+        public string EmailTest
+        {
+            get => TbEmail.Text;
+            set => TbEmail.Text = value;
+        }
+
+        public string PasswordTest
+        {
+            get => TbPassword.Password;
+            set => TbPassword.Password = value;
+        }
+
         public LoginWithEmailDlg()
         {
             InitializeComponent();
         }
 
-        private void BtnSubmit_Click(object sender, RoutedEventArgs e)
+        private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
+            string errors = "";
 
+            if (!isLoginDataValid(out errors))
+            {
+                Console.WriteLine("Validation failed: " + errors);
+                // MessageBox.Show(this, $"Please enter valid data: {errors}", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            Console.WriteLine("Inputs validation successful");
+
+            Dashboard dialog = new Dashboard();
+            dialog.Owner = this;
+
+            if (dialog.ShowDialog() == true)
+            {
+                // Do something with the data
+            }
         }
 
-        public bool isLoginDataValid() 
+        public bool isLoginDataValid(out string errorsString) 
         {
             bool isValid = true;
-            string email = textBoxEmail.Text.Trim();
-            if (string.IsNullOrWhiteSpace(email))
+            errorsString = "";
+
+            // validate Email
+            string emailErrorMessage;
+            if (!Validator.ValidateInput(TbEmail.Text, "Email", 1, 360, out emailErrorMessage) ||
+                !Validator.ValidateEmail(TbEmail.Text, out emailErrorMessage))
             {
-                // error text = "Please enter email"
-                Console.WriteLine("Please enter email");
-                isValid = false;
+                Validator.HandleValidationError(TbErrorEmail, emailErrorMessage, out isValid);
+                errorsString += " __ " + emailErrorMessage;
             }
 
-            try
+
+            if (!Validator.ValidateInput(TbPassword.Password, "Password", out var passwordErrorMessage))
             {
-                MailAddress m = new MailAddress(email);
-            }
-            catch
-            {
-                // error text = "Please enter a valid email"
-                Console.WriteLine("Please enter a valid email");
-                isValid = false;
+                Validator.HandleValidationError(TbErrorPassword, passwordErrorMessage, out isValid);
+                errorsString += " __ " + passwordErrorMessage;
             }
 
             return isValid;
+        }
+
+        private void TbPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            TbErrorPassword.Text = "";
+        }
+
+        private void TbEmail_TextChanged(object sender, TextChangedEventArgs e)
+        {            
+            TbErrorEmail.Text = "";
         }
     }
 }

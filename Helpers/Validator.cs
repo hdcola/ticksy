@@ -31,6 +31,20 @@ namespace ticksy.Helpers
             return true;
         }
 
+        // Validates if input just not empty - overloading method
+        public static bool ValidateInput(string input, string fieldName, out string errorMessage)
+        {
+            errorMessage = string.Empty;
+
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                errorMessage = $"{fieldName} cannot be empty.";
+                return false;
+            }
+
+            return true;
+        }
+
 
         public static bool ValidateEmail(string email, out string errorMessage)
         {   
