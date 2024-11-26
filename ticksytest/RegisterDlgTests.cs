@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using ticksy;
 using ticksy.Dialogs;
 
 namespace ticksytest
@@ -50,5 +51,27 @@ namespace ticksytest
             Assert.IsTrue(errorsString.Contains("Passwords"), "Passwords do not match");
 
         }
+
+        [TestMethod]
+        public void BtnRegister_Click_ShouldHandleDatabaseError()
+        {
+            // Arrange
+            var registerDlg = new RegisterDlg
+            {
+                UsernameTest = "validuser",
+                EmailTest = "valid@example.com",
+                PasswordTest = "validpassword123",
+                ConfirmPasswordTest = "validpassword123"
+            };
+
+            // Act
+
+
+            // Assert
+
+
+        }
+
+
     }
 }

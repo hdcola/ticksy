@@ -7,53 +7,124 @@
         xmlns:local="clr-namespace:ticksy.Dialogs"
         mc:Ignorable="d"
         WindowStartupLocation="CenterOwner"        
-        Title="Login in" Height="328" Width="528">
-    <Grid>
-        <TextBlock Width="152"  HorizontalAlignment="Left" Margin="209,29,0,0"
-                   Name="textBlockHeading" Text="Log in with email:" VerticalAlignment="Top" Foreground="BlueViolet" 
-                   FontSize="17" FontStretch="ExtraCondensed" RenderTransformOrigin="0.573,0.636"/>
+        Title="Login in" Height="300" Width="400">
+    <Grid Margin="10,30,0,0">
 
-        <Button Name="BtnLogin" Content="Register" Cursor="Hand" Margin="451,5,12,338">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <TextBlock TextDecorations="Underline">
-                        <ContentPresenter/>
-                    </TextBlock>
-                </ControlTemplate>
-            </Button.Template>
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Foreground" Value="Navy"/>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Foreground" Value="Red"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="80"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Height="23" HorizontalAlignment="Center"
+                 Name="textBlockHeading"  Grid.Column="1"
+                 Text="Log in:" Margin="0,0,0,0" VerticalAlignment="Top" FontSize="14" 
+                 FontStretch="ExtraCondensed"/>
 
-        <Grid Margin="0,59,0,0" Background="White" Height="228" VerticalAlignment="Top" HorizontalAlignment="Center" Width="396">
+            <Button Name="BtnRegister" Content="Register" Cursor="Hand" Margin="0,0,0,0" 
+             VerticalAlignment="Top" 
+             HorizontalAlignment="Center" Grid.Column="2">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <TextBlock TextDecorations="Underline">
+                 <ContentPresenter/>
+                        </TextBlock>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Foreground" Value="Navy"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Foreground" Value="Blue"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
 
-            <TextBlock Height="23" HorizontalAlignment="Left" Margin="50,46,0,0"
-                       Name="textBlockEmailId" Text="Email" VerticalAlignment="Top"
-                       Width="73"/>
-            <TextBox Height="40" HorizontalAlignment="Left" Margin="137,37,0,0"
-                     Name="textBoxEmail" VerticalAlignment="Top" Width="222" 
-                     Style="{DynamicResource MaterialDesignOutlinedTextBox}" />
+        <Grid Margin="0,40,0,0" Background="White" 
+            Grid.Column="1"
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
 
-            <TextBlock Height="23" HorizontalAlignment="Left" Margin="50,112,0,0"
-                       Name="textBlockPassword" Text="Password:" VerticalAlignment="Top"
-                       Width="73"/>
-            <PasswordBox Height="40" HorizontalAlignment="Left" Margin="137,0,0,0"
-                         Name="passwordBox1" VerticalAlignment="Center" Width="222"
-                         Style="{DynamicResource MaterialDesignOutlinedPasswordBox}"/>
+            <StackPanel VerticalAlignment="Center" Height="44" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,5">
+                <Border CornerRadius="4" 
+                      Background="White" 
+                      Padding="4">
+                    <TextBox Name="TbEmail" 
+                       TextChanged="TbEmail_TextChanged"
+                       materialDesign:HintAssist.Hint="Email" 
+                       Height="24" 
+                       Padding="4,0" 
+                       VerticalAlignment="Top" 
+                       Style="{DynamicResource MaterialDesignFloatingHintTextBox}" >
+                        <TextBox.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="FontSize" Value="14" />
+                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                </Border>
 
-            <Button Name="BtnSubmit" Content="Log in" Click="BtnSubmit_Click" Height="30" HorizontalAlignment="Left" Margin="137,164,0,0"
-                    VerticalAlignment="Top" Width="80"/>
-            <Button Name="BtnCancel" Content="Cancel" IsCancel="True" Height="30" HorizontalAlignment="Left" Margin="261,164,0,0"
-                     VerticalAlignment="Top" Width="80"/>
+                <TextBlock Name="TbErrorEmail" 
+                 Text="" 
+                 Foreground="Red" 
+                 FontSize="9" 
+                 Margin="4,0,0,0" 
+                 Visibility="Visible" />
+            </StackPanel>
+
+
+            <StackPanel VerticalAlignment="Center" Height="44" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,0,5">
+                <Border CornerRadius="4" 
+                     Background="White" 
+                     Padding="4">
+                    <PasswordBox Name="TbPassword" 
+                  PasswordChanged="TbPassword_PasswordChanged"
+                  materialDesign:HintAssist.Hint="Password"
+                  Height="24" 
+                  Padding="4,0" 
+                  VerticalAlignment="Top" 
+                  Style="{DynamicResource MaterialDesignFloatingHintPasswordBox}">
+                        <PasswordBox.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="FontSize" Value="14" />
+                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+                            </Style>
+                        </PasswordBox.Resources>
+                    </PasswordBox>
+                </Border>
+
+                <TextBlock Name="TbErrorPassword" 
+            Text="" 
+            Foreground="Red" 
+            FontSize="9" 
+            Margin="4,0,0,0" 
+            Visibility="Visible" />
+            </StackPanel>
+
+
+
+
+            <StackPanel Margin="0,15,0,0" Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2">
+                <Button Content="Login" Name="BtnLogin" Click="BtnLogin_Click"  Height="26" Width="80" 
+              HorizontalAlignment="Left" Margin="0,0,0,0"
+      VerticalAlignment="Top" FontSize ="12" />
+                <Button Content="Cancel" Name="BtnCancel" IsCancel="True" Height="26" Width="80" 
+              HorizontalAlignment="Left" Margin="30,0,0,0"
+      VerticalAlignment="Top" FontSize ="12"/>
+            </StackPanel>
+
+
         </Grid>
     </Grid>
 </Window>
