@@ -45,9 +45,7 @@ namespace ticksy.Dialogs
             try
             {
                 // Get user matching email
-                var query = from User in Globals.DbContext.Set<User>() where User.Email == TbEmail.Text select User;
-                
-                var user = query.FirstOrDefault();
+                User user = Globals.DbContext.Set<User>().Where(u => u.Email == TbEmail.Text).FirstOrDefault();
                 if (user == null)
                 {
                     throw new ArgumentException("Invalid credentials");
