@@ -1,0 +1,49 @@
+name: Build and Package WPF App
+
+on:
+  push:
+    tags:
+      - '*' 
+
+jobs:
+  build:
+    name: Build WPF App and Create Installer
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup MSBuild with .NET Framework 4.8
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Setup NuGet
+      uses: nuget/setup-nuget@v2
+
+    - name: Restore dependencies
+      run: nuget restore ticksy.sln 
+
+
+    - name: Build the project
+      run: msbuild ticksy.sln /p:Configuration=Release
+
+    - name: Package with Inno Setup
+      run: |
+        iscc /Qp installer_script.iss
+      shell: cmd
+
+    - name: Create Release
+      uses: actions/create-release@v1
+      with:
+        tag_name: ${{ github.ref_name }}
+        release_name: "Release ${{ github.ref_name }}"
+        draft: false
+        prerelease: false
+
+    - name: Upload to GitHub Releases
+      uses: actions/upload-release-asset@v1
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: output/installer/installer.exe
+        asset_name: WPFAppInstaller_${{ github.ref_name }}.exe
+        asset_content_type: application/octet-stream
