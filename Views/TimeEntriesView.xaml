@@ -54,7 +54,7 @@
                 IsEditable="True"
                 IsTextSearchEnabled="True"
                 SelectionChanged="CmbSelectTask_SelectionChanged"
-                materialDesign:HintAssist.Hint="Search or select a project"/>
+                materialDesign:HintAssist.Hint="Search or select a task"/>
             <TextBlock 
                 Name="TbErrorSelectTask"
                  Text="" 
