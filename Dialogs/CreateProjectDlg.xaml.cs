@@ -163,8 +163,7 @@ namespace ticksy.Dialogs
 
         private void TbHourlyRate_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
+            e.Handled = !Regex.IsMatch(e.Text, @"^\d*\.?\d*$");
         }
 
     }
