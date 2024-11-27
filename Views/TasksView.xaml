@@ -87,6 +87,8 @@
             <Label Padding="15, 10" Content="Tasks" Background="{DynamicResource MaterialDesign.Brush.Primary.Light}"/>
 
             <DataGrid 
+                VerticalScrollBarVisibility="Auto"
+                MaxHeight="300"
                 ItemsSource="{Binding Tasks}"
                 HorizontalAlignment="Stretch"
                 CanUserAddRows="False"

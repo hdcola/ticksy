@@ -57,6 +57,8 @@
         <StackPanel Grid.Row="2" Orientation="Vertical">
             <Label Padding="15, 10" Content="Projects" Background="{DynamicResource MaterialDesign.Brush.Primary.Light}"/>
             <DataGrid 
+                 VerticalScrollBarVisibility="Auto"
+                 MaxHeight="300"
                  ItemsSource="{Binding ProjectSummaries}"
                  HorizontalAlignment="Stretch"
                  CanUserAddRows="False"
