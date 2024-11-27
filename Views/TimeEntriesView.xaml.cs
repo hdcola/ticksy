@@ -129,7 +129,7 @@ namespace ticksy.Views
             BtnFocusTimer.IsEnabled = true;
 
             TbxName.Text = "";
-            CmbSelectTask.SelectedIndex = -1;
+            //CmbSelectTask.SelectedIndex = -1;
         }
 
         private void StopEntry()
