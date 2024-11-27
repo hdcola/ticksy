@@ -13,13 +13,15 @@ namespace ticksy.Views
     /// </summary>
     public partial class TasksView : UserControl
     {
+        private TasksViewModel viewModel { get; }
         public Project Project { get; }
         public User User { get; }
 
         public TasksView(Project project, User user)
         {
             InitializeComponent();
-            DataContext = new TasksViewModel(project);
+            viewModel = new TasksViewModel(project);
+            DataContext = viewModel;
             Project = project;
             User = user;
         }
@@ -51,11 +53,12 @@ namespace ticksy.Views
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now
             };
+            viewModel.AddTask(newTask);
 
             Console.WriteLine($"Name: {newTask.Name}, ProjectId: {newTask.ProjectId}, UserId: {newTask.UserId}, Status: {newTask.Status}, CreatedAt: {newTask.CreatedAt}, UpdatedAt: {newTask.UpdatedAt}");
 
-            Globals.DbContext.Set<Task>().Add(newTask);
-            Globals.DbContext.SaveChanges();
+            //Globals.DbContext.Set<Task>().Add(newTask);
+            //Globals.DbContext.SaveChanges();
 
             // TODO: make a custom dialog
             // MessageBox.Show("Task saved successfully!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
