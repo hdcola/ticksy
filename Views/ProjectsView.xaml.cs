@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ticksy.Dialogs;
 using ticksy.ViewModels;
+using static ticksy.ViewModels.ProjectsViewModel;
 
 namespace ticksy.Views
 {
@@ -40,6 +41,13 @@ namespace ticksy.Views
             {
                 // Do something with the data
             }
+        }
+
+        private void Row_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            DataGridRow row = (DataGridRow)sender;
+            Project project = (Project)row.Item;
+            this.Content = new TasksView(project, User);
         }
     }
 }

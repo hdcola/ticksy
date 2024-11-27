@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.Entity;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
 using ticksy.Helpers;
 
 namespace ticksy.ViewModels
@@ -14,6 +9,7 @@ namespace ticksy.ViewModels
     public class TimeEntriesViewModel : AViewModel
     {
         public ObservableCollection<TimeEntrySummary> TimeEntries { get; set; }
+        public List<Task> Tasks { get; set; }
         private User User { get; set; }
 
         public TimeEntriesViewModel(User user)
@@ -22,11 +18,15 @@ namespace ticksy.ViewModels
 
             try
             {
-                var entries = Globals.DbContext.Set<TimeEntry>()
+                Tasks = Globals.DbContext.Set<Task>()
                     .Where(t => t.UserId == User.UserId)
+                    .ToList();          
+
+                var entries = Globals.DbContext.Set<TimeEntry>()
+                    .Where(t => t.UserId == User.UserId && t.StartTime > DateTime.Today)
                     .Select(t => new TimeEntrySummary
                     {
-                        Name = t.Name, Task = t.Task.Name, StartTime = t.StartTime, EndTime = t.EndTime
+                        Name = t.Name, Task = t.Task, StartTime = t.StartTime, EndTime = t.EndTime
                     })
                     .ToList();
 
@@ -39,12 +39,9 @@ namespace ticksy.ViewModels
         }
     }
     
-    public class TimeEntrySummary
+    public class TimeEntrySummary : TimeEntry
     {
-        public string Name { get; set; }
-        public string Task { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
         public TimeSpan Elapsed { get => EndTime - StartTime; }
+        public string TaskProject { get => $"{Task.Name} / {Task.Project.Name}"; }
     }
 }

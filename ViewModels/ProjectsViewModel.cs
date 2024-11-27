@@ -28,6 +28,7 @@ namespace ticksy.ViewModels
                     .Include("Tasks.TimeEntries")
                     .Select(p => new ProjectSummary
                     {
+                        ProjectId = p.ProjectId,
                         Name = p.Name,
                         Description = p.Description,
                         HourlyRate = p.HourlyRate,
@@ -53,11 +54,8 @@ namespace ticksy.ViewModels
 
 
         }
-        public class ProjectSummary
+        public class ProjectSummary : Project
         {
-            public string Name { get; set; }
-            public string Description { get; set; }
-            public decimal HourlyRate { get; set; }
             public int? TotalTrackedHours { get; set; }
             public double? Amount { get; set; }
         }
