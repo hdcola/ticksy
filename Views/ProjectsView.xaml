@@ -68,22 +68,27 @@
                          Width="*"
                          Header="Name"
                          Binding="{Binding Name}"
+                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
                         />
                     <DataGridTextColumn 
                          Width="*"
                          Header="Description"
-                         Binding="{Binding Description}"/>
+                         Binding="{Binding Description}"
+                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"/>
                     <DataGridTextColumn 
                          Width="*"
-                         Header="Tracked hours"
+                         Header="Tracked hours" 
+                         IsReadOnly="True"
                          Binding="{Binding TotalTrackedHours, StringFormat='F2'}"/>
                     <DataGridTextColumn 
                          Width="*"
                          Header="Rate (CAD)"
-                         Binding="{Binding HourlyRate}"/>
+                         Binding="{Binding HourlyRate}"
+                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"/>
                     <DataGridTextColumn 
                          Width="*"
                          Header="Amount (CAD)"
+                         IsReadOnly="True"
                          Binding="{Binding Amount}"/>
                 </DataGrid.Columns>
             </DataGrid>

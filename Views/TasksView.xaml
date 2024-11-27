@@ -97,7 +97,8 @@
                     <DataGridTextColumn 
                         Width="*"
                         Header="Name"
-                        Binding="{Binding Name}"/>
+                        Binding="{Binding Name}"
+                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"/>
                 </DataGrid.Columns>
             </DataGrid>
             
