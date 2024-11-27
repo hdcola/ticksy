@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ticksy.Dialogs;
 using ticksy.Helpers;
 using ticksy.ViewModels;
 
@@ -67,7 +68,23 @@ namespace ticksy.Views
             Globals.DbContext.SaveChanges();
 
             // TODO: make a custom dialog
-            MessageBox.Show("Task saved successfully!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+            // MessageBox.Show("Task saved successfully!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+            CustomMessageBox customMessageBox = new CustomMessageBox();
+            customMessageBox.TbMessage.Text = "Task saved successfully!";
+            var dashboard = Application.Current.Windows
+        .OfType<Dashboard>() 
+        .FirstOrDefault();
+
+            if (dashboard != null)
+            {
+                customMessageBox.Owner = dashboard; // Set the Dashboard as the owner
+                customMessageBox.WindowStartupLocation = WindowStartupLocation.CenterOwner; // Center the dialog
+            }
+
+            if (customMessageBox.ShowDialog() == true)
+            {
+                // Handle successful login
+            }
             Console.WriteLine("Task saved successfully!");
             TbNewTask.Text = "";
         }

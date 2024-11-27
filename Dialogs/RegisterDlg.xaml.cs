@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Mail;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -87,8 +88,18 @@ namespace ticksy.Dialogs
                 Globals.DbContext.SaveChanges();
 
                 // TODO: make a custom dialog
-                MessageBox.Show(this, "Registration successful!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                // MessageBox.Show(this, "Registration successful!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 Console.WriteLine("Registration successful!");
+
+                CustomMessageBox messageBox = new CustomMessageBox();
+                messageBox.TbMessage.Text = "Registration successful!";
+                messageBox.Owner = Application.Current.MainWindow;
+                messageBox.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+
+                if (messageBox.ShowDialog() == true)
+                {
+                    // Handle successful login
+                }
                 // close RegisterDlg
                 this.Hide(); 
 
@@ -116,6 +127,7 @@ namespace ticksy.Dialogs
             }
             catch (Exception ex)
             {
+
                 MessageBox.Show(this, $"Registration failed: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 Console.WriteLine($"Registration failed: {ex.Message}");
 
