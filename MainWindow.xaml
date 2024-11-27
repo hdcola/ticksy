@@ -14,11 +14,11 @@
             <MenuItem Header="File">
                 <MenuItem Name="btnExit" Header="Exit" Click="btnExit_Click" />
             </MenuItem>
-            <MenuItem Header="Developer">
+            <!--<MenuItem Header="Developer">
                 <MenuItem Header="Create Invoice" Click="btnCreateInvoice_Click" />
                 <MenuItem Header="Create Project" Click="btnCreateProject_Click" />
                 <MenuItem Name="MIDashboard" Header="Dashboard" Click="MIDashboard_OnClick"/>
-            </MenuItem>
+            </MenuItem>-->
             <MenuItem Header="Help">
                 <MenuItem Name="menuAbout" Header="About" Click="menuAbout_Click" />
             </MenuItem>

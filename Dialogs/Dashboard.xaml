@@ -45,8 +45,14 @@
                     </StackPanel>
                 </TabItem.Header>
                 <TabItem.Content>
-                    <StackPanel Margin="16">
-                        <Label>Invoices Content</Label>
+                    <StackPanel Margin="20" Orientation="Vertical">
+                        <Label FontSize="16" FontWeight="Bold">Invoices</Label>
+                        <Button Name="BtnGenerateInvoice"
+                                
+                                HorizontalAlignment="Left"
+                                Width="100"
+                                Margin="0,20"
+                                Content="Generate"/>         
                     </StackPanel>
                 </TabItem.Content>
             </TabItem>
