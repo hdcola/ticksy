@@ -9,7 +9,7 @@
              MouseDown="TimeEntriesViewUC_MouseDown"
              Name="TimeEntries"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Margin="20" Name="MainGrid">
+    <Grid Margin="16" Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="Auto"/>
