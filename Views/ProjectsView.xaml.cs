@@ -23,12 +23,14 @@ namespace ticksy.Views
     /// </summary>
     public partial class ProjectsView : UserControl
     {
+        private ProjectsViewModel viewModel { get; }
         public User User { get; }
         public ProjectsView(User user)
         {
             InitializeComponent();
             User = user;
-            DataContext = new ProjectsViewModel(user);
+            viewModel = new ProjectsViewModel(user);
+            DataContext = viewModel;
         }
 
 
@@ -39,7 +41,10 @@ namespace ticksy.Views
 
             if (dialog.ShowDialog() == true)
             {
+                Console.WriteLine("Hello?");
                 // Do something with the data
+                Project project = dialog.Project;
+                viewModel.AddProject(project);
             }
         }
 

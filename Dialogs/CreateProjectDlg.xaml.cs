@@ -25,6 +25,8 @@ namespace ticksy.Dialogs
     {
         public User User { get; private set; }
 
+        public Project Project { get; set; }
+
         public CreateProjectDlg(User user)
         {
             InitializeComponent();
@@ -65,7 +67,7 @@ namespace ticksy.Dialogs
 
             try
             {
-                var newProject = new Project
+                Project = new Project
                 {
                     Name = TbProjectName.Text.Trim(),
                     UserId = User.UserId,
@@ -76,10 +78,10 @@ namespace ticksy.Dialogs
                     UpdatedAt = DateTime.Now
                 };
 
-                Console.WriteLine($"Name: {newProject.Name}, UserId: {newProject.UserId}, Description: {newProject.Description}, HourlyRate: {newProject.HourlyRate}, Archived: {newProject.Archived}, CreatedAt: {newProject.CreatedAt}, UpdatedAt: {newProject.UpdatedAt}");
+                Console.WriteLine($"Name: {Project.Name}, UserId: {Project.UserId}, Description: {Project.Description}, HourlyRate: {Project.HourlyRate}, Archived: {Project.Archived}, CreatedAt: {Project.CreatedAt}, UpdatedAt: {Project.UpdatedAt}");
                 
-                Globals.DbContext.Set<Project>().Add(newProject);
-                Globals.DbContext.SaveChanges();
+                //Globals.DbContext.Set<Project>().Add(newProject);
+                //Globals.DbContext.SaveChanges();
 
                 // TODO: make a custom dialog
                 // MessageBox.Show(this, "Project saved successfully!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -92,7 +94,8 @@ namespace ticksy.Dialogs
                     // Handle successful login
                 }
                 Console.WriteLine("Project saved successfully!");
-                this.Close();
+                // Dismiss the dialog
+                this.DialogResult = true;
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException ex)
             {

@@ -22,21 +22,23 @@ namespace ticksy.Dialogs
     /// </summary>
     public partial class Dashboard : Window
     {
+        private User User { get; }
         public Dashboard()
         {
+            User = Globals.User;
             InitializeComponent();
         }
 
+
+
         private void TimeEntriesStackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            User user = Globals.User;
-            TabTimeEntries.Content = new TimeEntriesView(user, this);
+            TabTimeEntries.Content = new TimeEntriesView(User, this);
         }
 
         private void ProjectsStackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {   
-            User user = Globals.User;
-            TabProjects.Content = new ProjectsView(user);
+            TabProjects.Content = new ProjectsView(User);
         }
 
         private void BtnGenerateInvoice_Click(object sender, RoutedEventArgs e)
@@ -48,6 +50,14 @@ namespace ticksy.Dialogs
             {
                 // Do something with the data
             }
+        }
+
+        private void TabControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            var tabControl = (TabControl)sender;
+            tabControl.SelectedIndex = 1;
+
+            TabProjects.Content = new ProjectsView(User);
         }
     }
 }

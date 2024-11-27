@@ -8,12 +8,14 @@
         mc:Ignorable="d" ResizeMode="NoResize"
         Title="Dashboard" Height="600" Width="800">
     <Grid>
-        <TabControl TabStripPlacement="Left" Style="{DynamicResource MaterialDesignTabControl}">
+        <TabControl Loaded="TabControl_Loaded" TabStripPlacement="Left" Style="{DynamicResource MaterialDesignTabControl}">
             
             <TabItem Name="TabTimeEntries">
                 <TabItem.Header>
                     <StackPanel MouseLeftButtonDown="TimeEntriesStackPanel_MouseLeftButtonDown"  Orientation="Horizontal" VerticalAlignment="Center" Width="100">
-                        <materialDesign:PackIcon Kind="Timer" VerticalContentAlignment="Center" Foreground="Gray" Height="24" Width="24" Margin="0,0,10,0" />
+                        <TextBlock>
+                            <materialDesign:PackIcon Kind="Timer" VerticalContentAlignment="Center" Height="24" Width="24" Margin="0,0,10,0" />
+                        </TextBlock>
                         <TextBlock Text="Tracker" VerticalAlignment="Center"/>
                     </StackPanel>
                 </TabItem.Header>
@@ -22,7 +24,9 @@
             <TabItem Name="TabProjects">
                 <TabItem.Header>
                     <StackPanel MouseLeftButtonDown="ProjectsStackPanel_MouseLeftButtonDown"  Orientation="Horizontal" VerticalAlignment="Center" Width="100">
-                        <materialDesign:PackIcon Kind="Folder" VerticalContentAlignment="Center" Foreground="Gray" Height="24" Width="24" Margin="0,0,10,0" />
+                        <TextBlock>
+                             <materialDesign:PackIcon Kind="Folder" VerticalContentAlignment="Center" Height="24" Width="24" Margin="0,0,10,0" />
+                        </TextBlock>
                         <TextBlock Text="Projects" VerticalAlignment="Center"/>
                     </StackPanel>
                 </TabItem.Header>
@@ -30,21 +34,33 @@
 
             <TabItem Name="TbInvoices">
                 <TabItem.Header>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                        <materialDesign:PackIcon Kind="ReceiptText" Foreground="Gray" Height="24" Width="24" Margin="0,0,8,0"/>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Width="100">
+                        <TextBlock>
+                            <materialDesign:PackIcon Kind="Folder" VerticalContentAlignment="Center" Height="24" Width="24" Margin="0,0,10,0" />
+                        </TextBlock>
                         <TextBlock Text="Invoices" VerticalAlignment="Center"/>
                     </StackPanel>
                 </TabItem.Header>
                 <TabItem.Content>
-                    <StackPanel Margin="20" Orientation="Vertical">
-                        <Label FontSize="16" FontWeight="Bold">Invoices</Label>
-                        <Button Name="BtnGenerateInvoice"  
-                                Click="BtnGenerateInvoice_Click"
-                                HorizontalAlignment="Left"
-                                Width="100"
-                                Margin="0,20"
-                                Content="Generate"/>         
-                    </StackPanel>
+                    <Grid Margin="16">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label 
+                            Grid.Row="0" 
+                            FontSize="16" 
+                            FontWeight="Bold" 
+                            Content="Invoices"/>
+                        <Button 
+                            Grid.Row="1"  
+                            Name="BtnGenerateInvoice"  
+                            Click="BtnGenerateInvoice_Click"
+                            Width="200"
+                            Height="40"
+                            FontSize="16"
+                            Content="Generate Invoice"/>
+                    </Grid>
                 </TabItem.Content>
             </TabItem>
         </TabControl>

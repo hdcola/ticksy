@@ -9,7 +9,7 @@
              MouseDown="TimeEntriesViewUC_MouseDown"
              Name="TimeEntries"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Margin="20" Name="MainGrid">
+    <Grid Margin="16" Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="Auto"/>
@@ -65,7 +65,8 @@
             <TextBlock 
                 Grid.Column="2"
                 Name="TbTimer"
-                Padding="10 0"
+                MinWidth="90"
+                HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Text="{Binding Path=TimeLapsed.CurrentTime, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
                 FontSize="20"
@@ -117,9 +118,12 @@
             </Grid>
 
             <DataGrid 
+                Name="DgItems"
                 ItemsSource="{Binding TimeEntries}"
                 HorizontalAlignment="Stretch"
                 CanUserAddRows="False"
+                VerticalScrollBarVisibility="Auto"
+                MaxHeight="400"
                 AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn 

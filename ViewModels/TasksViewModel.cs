@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,16 @@ namespace ticksy.ViewModels
 {
     public class TasksViewModel : AViewModel
     {
-        public List<Task> Tasks { get; set; }
+        private ObservableCollection<Task> _tasks;
+        public ObservableCollection<Task> Tasks
+        {
+            get => _tasks;
+            set
+            {
+                _tasks = value;
+                OnPropertyChanged("Tasks");
+            }
+        }
 
         private Project Project { get; set; }
 
@@ -20,7 +30,28 @@ namespace ticksy.ViewModels
 
             try
             {
-                Tasks = Globals.DbContext.Set<Task>().Where(p => p.ProjectId == Project.ProjectId).ToList();
+                LoadData();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void LoadData()
+        {
+            var tasks = Globals.DbContext.Set<Task>().Where(p => p.ProjectId == Project.ProjectId).ToList();
+            Tasks = new ObservableCollection<Task>(tasks);
+        }
+
+        public void AddTask(Task task)
+        {
+            try
+            {
+                Globals.DbContext.Set<Task>().Add(task);
+                Globals.DbContext.SaveChanges();
+
+                LoadData();
             }
             catch (Exception ex)
             {

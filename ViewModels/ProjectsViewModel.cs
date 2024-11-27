@@ -12,7 +12,16 @@ namespace ticksy.ViewModels
 {
     public class ProjectsViewModel : AViewModel
     {
-        public ObservableCollection<ProjectSummary> ProjectSummaries { get; set; }
+        private ObservableCollection<ProjectSummary> _projectSummaries;
+        public ObservableCollection<ProjectSummary> ProjectSummaries
+        {
+            get => _projectSummaries;
+            set
+            {
+                _projectSummaries = value;
+                OnPropertyChanged("ProjectSummaries");
+            }
+        }
 
         private User User { get; set; }
 
@@ -22,7 +31,21 @@ namespace ticksy.ViewModels
 
             try
             {
-                var projects = Globals.DbContext.Set<Project>()
+                LoadData();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error while fetching projects: " + ex.Message);
+                if (ex.InnerException != null)
+                    Console.WriteLine("Inner Exception: " + ex.InnerException.Message);
+            }
+
+
+        }
+
+        private void LoadData()
+        {
+            var projects = Globals.DbContext.Set<Project>()
                     .Where(p => p.UserId == User.UserId)
                     .Include(p => p.Tasks)
                     .Include("Tasks.TimeEntries")
@@ -43,17 +66,25 @@ namespace ticksy.ViewModels
                     })
                     .ToList();
 
-                ProjectSummaries = new ObservableCollection<ProjectSummary>(projects);
+            ProjectSummaries = new ObservableCollection<ProjectSummary>(projects);
+        }
+
+        public void AddProject(Project project)
+        {
+            try
+            {
+                Console.WriteLine(project);
+                Globals.DbContext.Set<Project>().Add(project);
+                Globals.DbContext.SaveChanges();
+
+                LoadData();
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error while fetching projects: " + ex.Message);
-                if (ex.InnerException != null)
-                    Console.WriteLine("Inner Exception: " + ex.InnerException.Message);
+                Console.WriteLine(ex.Message);
             }
-
-
         }
+
         public class ProjectSummary : Project
         {
             public int? TotalTrackedHours { get; set; }
