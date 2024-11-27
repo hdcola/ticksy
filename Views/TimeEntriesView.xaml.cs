@@ -54,7 +54,7 @@ namespace ticksy.Views
         private void BtnFocusTimer_Click(object sender, RoutedEventArgs e)
         {
             // TODO: Replace startDateTime with actual entry time start time
-            FocusTimerDlg dialog = new FocusTimerDlg("Entry test task name", StartDateTime);
+            FocusTimerDlg dialog = new FocusTimerDlg(CurrentEntry.Name, StartDateTime);
             dialog.Owner = Owner;
 
             Owner.WindowState = WindowState.Minimized;
@@ -129,7 +129,7 @@ namespace ticksy.Views
             BtnFocusTimer.IsEnabled = true;
 
             TbxName.Text = "";
-            CmbSelectTask.SelectedIndex = -1;
+            //CmbSelectTask.SelectedIndex = -1;
         }
 
         private void StopEntry()
