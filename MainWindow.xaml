@@ -14,7 +14,7 @@
             <MenuItem Header="File">
                 <MenuItem Name="btnExit" Header="Exit" Click="btnExit_Click" />
             </MenuItem>
-            <MenuItem Header="Developer">
+            <MenuItem Header="Tools">
                 <MenuItem Header="Create Invoice" Click="btnCreateInvoice_Click" />
                 <!--<MenuItem Header="Create Project" Click="btnCreateProject_Click" />
                 <MenuItem Name="MIDashboard" Header="Dashboard" Click="MIDashboard_OnClick"/>
