@@ -127,6 +127,9 @@ namespace ticksy.Views
 
             // Enable the Magical Floating Timer
             BtnFocusTimer.IsEnabled = true;
+
+            TbxName.Text = "";
+            CmbSelectTask.SelectedIndex = -1;
         }
 
         private void StopEntry()
