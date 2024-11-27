@@ -25,7 +25,6 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <TextBlock 
-                Background="AliceBlue"
                 Grid.Row="0"
                 HorizontalAlignment="Center"
                 Name="textBlockHeading" 
