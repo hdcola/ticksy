@@ -129,9 +129,9 @@
                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"/>
                     <DataGridTextColumn 
                         IsReadOnly="True"
-                        Width="Auto"
+                        Width="*"
                         Header="Task"
-                        Binding="{Binding Task}"/>
+                        Binding="{Binding TaskProject}"/>
                     <DataGridTextColumn 
                         IsReadOnly="True"
                         Width="*"
@@ -146,7 +146,7 @@
                         IsReadOnly="True"
                         Width="*"
                         Header="Elapsed"
-                        Binding="{Binding Elapsed}"/>
+                        Binding="{Binding Elapsed, StringFormat=hh\\:mm\\:ss}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
