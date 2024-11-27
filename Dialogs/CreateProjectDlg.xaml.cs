@@ -45,7 +45,18 @@ namespace ticksy.Dialogs
 
             if (!Decimal.TryParse(TbHourlyRate.Text.Trim(), out decimal hourlyRate))
             {
-                MessageBox.Show(this, "Hourly rate must be a valid number.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                // MessageBox.Show(this, "Hourly rate must be a valid number.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                Console.WriteLine("Hourly rate must be a decimal number.");
+
+                CustomMessageBox messageBoxError = new CustomMessageBox();
+                messageBoxError.TbMessage.Text = "Hourly rate must be a decimal number.";
+                messageBoxError.Owner = this;
+
+                if (messageBoxError.ShowDialog() == true)
+                {
+                    // Handle successful login
+                }
                 return;
             }
 
@@ -71,7 +82,15 @@ namespace ticksy.Dialogs
                 Globals.DbContext.SaveChanges();
 
                 // TODO: make a custom dialog
-                MessageBox.Show(this, "Project saved successfully!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                // MessageBox.Show(this, "Project saved successfully!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                CustomMessageBox customMessageBox = new CustomMessageBox();
+                customMessageBox.TbMessage.Text = "Project saved successfully!";
+                customMessageBox.Owner = this;
+
+                if (customMessageBox.ShowDialog() == true)
+                {
+                    // Handle successful login
+                }
                 Console.WriteLine("Project saved successfully!");
                 this.Close();
             }
@@ -102,8 +121,17 @@ namespace ticksy.Dialogs
 
             catch (Exception ex)
             {
-                MessageBox.Show(this, $"Project saving failed: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                CustomMessageBox message = new CustomMessageBox();
+                message.TbMessage.Text = "Project saving failed.";
+                message.Owner = this;
+
+                if (message.ShowDialog() == true)
+                {
+                    // Handle successful login
+                }
+                // MessageBox.Show(this, $"Project saving failed: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 Console.WriteLine($"Project saving failed: {ex.Message}");
+                this.Close();
 
             }
         }
