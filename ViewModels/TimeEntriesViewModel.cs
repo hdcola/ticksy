@@ -26,7 +26,7 @@ namespace ticksy.ViewModels
                     .Where(t => t.UserId == User.UserId && t.StartTime > DateTime.Today)
                     .Select(t => new TimeEntrySummary
                     {
-                        Name = t.Name, Task = t.Task.Name, StartTime = t.StartTime, EndTime = t.EndTime
+                        Name = t.Name, Task = t.Task, StartTime = t.StartTime, EndTime = t.EndTime
                     })
                     .ToList();
 
@@ -39,12 +39,9 @@ namespace ticksy.ViewModels
         }
     }
     
-    public class TimeEntrySummary
+    public class TimeEntrySummary : TimeEntry
     {
-        public string Name { get; set; }
-        public string Task { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
         public TimeSpan Elapsed { get => EndTime - StartTime; }
+        public string TaskProject { get => $"{Task.Name} / {Task.Project.Name}"; }
     }
 }

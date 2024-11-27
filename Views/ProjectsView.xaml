@@ -63,6 +63,12 @@
                  HorizontalAlignment="Stretch"
                  CanUserAddRows="False"
                  AutoGenerateColumns="False">
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow" BasedOn="{StaticResource MaterialDesignDataGridRow}">
+                        <EventSetter Event="MouseDoubleClick" Handler="Row_MouseDoubleClick"/>
+                    </Style>
+                </DataGrid.RowStyle>
+
                 <DataGrid.Columns>
                     <DataGridTextColumn 
                          Width="*"

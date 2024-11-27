@@ -19,20 +19,11 @@
                 </TabItem.Header>
             </TabItem>
 
-            <TabItem Name="TbProjects">
+            <TabItem Name="TabProjects">
                 <TabItem.Header>
-                    <StackPanel MouseLeftButtonDown="ProjectsStackPanel_MouseLeftButtonDown" 
-                                Orientation="Horizontal" VerticalAlignment="Center">
-                        <materialDesign:PackIcon Kind="Folder" Foreground="Gray" Height="24" Width="24" Margin="0,0,8,0"/>
+                    <StackPanel MouseLeftButtonDown="ProjectsStackPanel_MouseLeftButtonDown"  Orientation="Horizontal" VerticalAlignment="Center" Width="100">
+                        <materialDesign:PackIcon Kind="Folder" VerticalContentAlignment="Center" Foreground="Gray" Height="24" Width="24" Margin="0,0,10,0" />
                         <TextBlock Text="Projects" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </TabItem.Header>
-            </TabItem>
-
-            <TabItem Name="TabTasks">
-                <TabItem.Header>
-                    <StackPanel MouseLeftButtonDown="TasksStackPanel_MouseLeftButtonDown">
-                        <TextBlock Text="Tasks"/>
                     </StackPanel>
                 </TabItem.Header>
             </TabItem>
