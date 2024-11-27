@@ -42,6 +42,6 @@ namespace ticksy.ViewModels
     public class TimeEntrySummary : TimeEntry
     {
         public TimeSpan Elapsed { get => EndTime - StartTime; }
-        public string TaskProject { get => $"{Task.Name} / {Task.Project.Name}"; }
+        public string TaskProject { get => $"{Task.Name}/{Task.Project.Name}"; }
     }
 }
