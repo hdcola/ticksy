@@ -169,7 +169,6 @@ namespace ticksy.Dialogs
 
         private void btnUpdatePreview_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"{CurrentInvoice}");
             updatePreview();
         }
 
