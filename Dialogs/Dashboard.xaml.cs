@@ -47,5 +47,16 @@ namespace ticksy.Dialogs
             User user = Globals.User;
             TbProjects.Content = new ProjectsView(user);
         }
+
+        private void BtnGenerateInvoice_Click(object sender, RoutedEventArgs e)
+        {
+            CreateInvoiceDlg dialog = new CreateInvoiceDlg();
+            dialog.Owner = this;
+
+            if (dialog.ShowDialog() == true)
+            {
+                // Do something with the data
+            }
+        }
     }
 }
