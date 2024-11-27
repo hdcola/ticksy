@@ -89,7 +89,19 @@ namespace ticksy.Dialogs
                 // TODO: make a custom dialog
                 MessageBox.Show(this, "Registration successful!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 Console.WriteLine("Registration successful!");
-                this.Close();
+                // close RegisterDlg
+                this.Hide(); 
+
+                LoginWithEmailDlg loginDlg = new LoginWithEmailDlg();
+                loginDlg.Owner = Application.Current.MainWindow; 
+                loginDlg.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+
+                if (loginDlg.ShowDialog() == true)
+                {
+                    // Handle successful login
+                }
+
+                this.Close(); // close RegisterDlg after login dialog is done
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException ex)
             {

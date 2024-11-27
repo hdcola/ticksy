@@ -47,7 +47,8 @@
                 <TabItem.Content>
                     <StackPanel Margin="20" Orientation="Vertical">
                         <Label FontSize="16" FontWeight="Bold">Invoices</Label>
-                        <Button Name="BtnGenerateInvoice"                                
+                        <Button Name="BtnGenerateInvoice"  
+                                Click="BtnGenerateInvoice_Click"
                                 HorizontalAlignment="Left"
                                 Width="100"
                                 Margin="0,20"
