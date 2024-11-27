@@ -1,4 +1,5 @@
-﻿using MigraDoc.DocumentObjectModel;
+﻿using Microsoft.SqlServer.Server;
+using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
 using PdfSharp.Pdf;
@@ -76,19 +77,34 @@ namespace ticksy.Dialogs
             Document document = new Document();
             Section section = document.AddSection();
 
+
             // add a title and some information
-            section.AddParagraph("Invoice")
-                .Format.Font.Size = 18;
-            section.AddParagraph($"Invoice Number: {invoice.InvoiceNumber}")
-                .Format.Font.Size = 12;
-            section.AddParagraph($"Invoice Date: {invoice.InvoiceDate:yyyy-MM-dd}")
-                .Format.Font.Size = 12;
-            section.AddParagraph($"Due Date: {invoice.DueDate:yyyy-MM-dd}")
-                .Format.Font.Size = 12;
-            section.AddParagraph($"Bill From: {invoice.BillFrom}")
-                .Format.Font.Size = 12;
-            section.AddParagraph($"Bill To: {invoice.BillTo}")
-                .Format.Font.Size = 12;
+            Paragraph title = section.AddParagraph("Invoice");
+            title.Format.Font.Size = 20;
+            title.Format.Font.Bold = true;
+            title.Format.SpaceAfter = 20;
+
+            Paragraph invoiceNumber = section.AddParagraph($"Invoice Number: {invoice.InvoiceNumber}");            
+            invoiceNumber.Format.Font.Size = 12;
+            invoiceNumber.Format.SpaceAfter = 5;
+
+
+            Paragraph invoiceDate = section.AddParagraph($"Invoice Date: {invoice.InvoiceDate:yyyy-MM-dd}");
+            invoiceDate.Format.Font.Size = 12;
+            invoiceDate.Format.SpaceAfter = 5;
+
+            Paragraph dueDate = section.AddParagraph($"Due Date: {invoice.DueDate:yyyy-MM-dd}");
+            dueDate.Format.Font.Size = 12;
+            dueDate.Format.SpaceAfter = 5;
+
+            Paragraph billFrom = section.AddParagraph($"Bill From: {invoice.BillFrom}");
+            billFrom.Format.Font.Size = 12;
+            billFrom.Format.SpaceAfter = 5;
+
+            Paragraph billTo = section.AddParagraph($"Bill To: {invoice.BillTo}");
+            billTo.Format.Font.Size = 12;
+            billTo.Format.SpaceAfter = 5;
+
             section.AddParagraph(); // add a blank line
 
             // create a table
@@ -134,6 +150,13 @@ namespace ticksy.Dialogs
             totalRow.Cells[0].MergeRight = 2; // merge cells
             totalRow.Cells[0].AddParagraph("Total Amount").Format.Font.Bold = true;
             totalRow.Cells[3].AddParagraph(totalAmount.ToString("C")).Format.Font.Bold = true;
+
+            foreach (Row row in table.Rows)
+            {
+                row.Height = "20"; 
+                row.HeightRule = RowHeightRule.AtLeast;
+                row.TopPadding = "4";
+            }
 
             // render the document
             PdfDocumentRenderer renderer = new PdfDocumentRenderer(true);
