@@ -1,42 +1,28 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Threading;
 using System.Windows;
+using ticksy.Helpers;
 
 namespace ticksy.Dialogs
 {
     /// <summary>
     /// Interaction logic for FocusTimerDlg.xaml
     /// </summary>
-    public partial class FocusTimerDlg : Window, INotifyPropertyChanged
+    public partial class FocusTimerDlg : Window
     {
-        // Goes with INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private readonly Timer _timer;
-        private readonly TimeSpan _offset;
-        private Stopwatch Stopwatch { get; set; }
         private DateTime StartDateTime { get; set; }
         public DateTime EndDateTime { get; set; }
-        public string CurrentTimespan { get; set; }
+        public TimeLapsed TimeLapsed { get; set; }
 
         public FocusTimerDlg(string entryName, DateTime startDateTime)
         {
             this.Topmost = true;
+
             StartDateTime = startDateTime;
-            _offset = DateTime.Now - startDateTime;
-
-            this.Stopwatch = new Stopwatch();
-            this.Stopwatch.Start();
-
-            // Start a callback every 1s
-            this._timer = new Timer(
-                new TimerCallback((s) => OnPropertyChanged(this, new PropertyChangedEventArgs("CurrentTimespan"))),
-                null, 1000, 1000);
+            TimeLapsed = new TimeLapsed(DateTime.Now - startDateTime);
 
             InitializeComponent();
             TbEntry.Text = entryName;
+            TimeLapsed.Start();
         }
 
         private void Window_OnLoaded(object sender, RoutedEventArgs e)
@@ -45,29 +31,13 @@ namespace ticksy.Dialogs
             Top = SystemParameters.WorkArea.Height - Height - 2;
         }
 
-        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (PropertyChanged != null)
-            {
-                TimeSpan timespan = Stopwatch.Elapsed + _offset;
-                CurrentTimespan = timespan.ToString(@"hh\:mm\:ss");
-
-                PropertyChanged(sender, e);
-            }
-        }
-
         private void BtnStop_OnClick(object sender, RoutedEventArgs e)
         {
-            if (Stopwatch.IsRunning)
-            {
-                Stopwatch.Stop();
-                _timer.Dispose();
+            TimeSpan timeLapsed = TimeLapsed.Stop();
+            EndDateTime = StartDateTime + timeLapsed;
 
-                EndDateTime = StartDateTime + Stopwatch.Elapsed + _offset;
-                // Dismiss the dialog
-                this.DialogResult = true;
-            }
-                
+            // Dismiss the dialog
+            this.DialogResult = true;
         }
     }
 }
