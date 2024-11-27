@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace ticksy.Helpers
 {
@@ -11,6 +13,14 @@ namespace ticksy.Helpers
             if (PropertyChanged != null)
             {
                 PropertyChanged(sender, e);
+            }
+        }
+
+        public void OnPropertyChanged(string propertyName = null)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }

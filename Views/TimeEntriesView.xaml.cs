@@ -15,6 +15,7 @@ namespace ticksy.Views
     public partial class TimeEntriesView : UserControl
     {
         private Window Owner { get; }
+        private TimeEntriesViewModel viewModel { get; }
         private bool IsEntryStarted = false;
         private DateTime StartDateTime { get; set; }
         private DateTime EndDateTime { get; set; }
@@ -29,7 +30,8 @@ namespace ticksy.Views
             TimeLapsed = new TimeLapsed();
 
             InitializeComponent();
-            DataContext = new TimeEntriesViewModel(user);
+            viewModel = new TimeEntriesViewModel(user);
+            DataContext = viewModel;
         }
 
         private void BtnStartEntryTime_OnClick(object sender, RoutedEventArgs e)
@@ -104,7 +106,8 @@ namespace ticksy.Views
                 EndTime = DateTime.Now,
                 CreatedAt = DateTime.Now,
             };
-            try
+            viewModel.AddTimeEntry(CurrentEntry);
+            /*try
             {
                 Globals.DbContext.Set<TimeEntry>().Add(CurrentEntry);
                 Globals.DbContext.SaveChanges();
@@ -112,7 +115,7 @@ namespace ticksy.Views
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-            }
+            }*/
 
             // Start the timer
             TimeLapsed = new TimeLapsed();
@@ -133,7 +136,9 @@ namespace ticksy.Views
             Trace.WriteLine($"End time entry: {EndDateTime}");
 
             // Save database entry
-            try
+            CurrentEntry.EndTime = EndDateTime;
+            viewModel.UpdateTimeEntry();
+            /*try
             {
                 CurrentEntry.EndTime = EndDateTime;
                 Globals.DbContext.SaveChanges();
@@ -141,7 +146,7 @@ namespace ticksy.Views
             catch (Exception ex) 
             { 
                 Console.WriteLine(ex.ToString());
-            }
+            }*/
 
             IsEntryStarted = false;
             BtnStartEntryTime.Content = "START";

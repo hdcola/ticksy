@@ -8,7 +8,7 @@
         mc:Ignorable="d" ResizeMode="NoResize"
         Title="Dashboard" Height="600" Width="800">
     <Grid>
-        <TabControl TabStripPlacement="Left" Style="{DynamicResource MaterialDesignTabControl}">
+        <TabControl Loaded="TabControl_Loaded" TabStripPlacement="Left" Style="{DynamicResource MaterialDesignTabControl}">
             
             <TabItem Name="TabTimeEntries">
                 <TabItem.Header>
