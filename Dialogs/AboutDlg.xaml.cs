@@ -20,8 +20,6 @@ namespace ticksy.Dialogs
     /// </summary>
     public partial class AboutDlg : Window
     {
-        private int count = 0;
-
         public AboutDlg()
         {
             InitializeComponent();
@@ -37,12 +35,6 @@ namespace ticksy.Dialogs
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
-
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
-        {
-            count++;
-            txtCount.Text = count.ToString();
         }
     }
 }

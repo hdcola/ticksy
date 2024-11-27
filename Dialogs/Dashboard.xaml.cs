@@ -1,4 +1,4 @@
-﻿using System;
+﻿   using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics;
@@ -31,7 +31,8 @@ namespace ticksy.Dialogs
             Project project = Globals.DbContext.Set<Project>().Find(1);
             if (project != null)
             {
-                TabTasks.Content = new TasksView(project);
+                User user = Globals.User;
+                TabTasks.Content = new TasksView(project, user);
             }
         }
 
@@ -42,8 +43,9 @@ namespace ticksy.Dialogs
         }
 
         private void ProjectsStackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            //TbProjects.Content = new ProjectsView();
+        {   
+            User user = Globals.User;
+            TbProjects.Content = new ProjectsView(user);
         }
     }
 }

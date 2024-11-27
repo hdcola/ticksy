@@ -27,6 +27,7 @@ namespace ticksy
 
         private void btnCreateProject_Click(object sender, RoutedEventArgs e)
         {
+            /*
             CreateProjectDlg dialog = new CreateProjectDlg();
             dialog.Owner = this;
 
@@ -34,6 +35,7 @@ namespace ticksy
             {
                 // Do something with the data
             }
+            */
         }
 
         private void btnCreateInvoice_Click(object sender, RoutedEventArgs e)

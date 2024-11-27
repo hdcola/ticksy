@@ -45,26 +45,50 @@
                 Name="LblProjectName"
                 Content="Project Name"/>
         </StackPanel>
-        <Grid Grid.Row="1" Margin="0,20,0,50">
+        <Grid Grid.Row="1" Margin="0,20,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBox
-                Grid.Column="0"
-                Margin="5,0,20,0"
-                Padding="5"
-                Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
-                materialDesign:HintAssist.Hint="Add a new task"/>
-            <Button 
-                Grid.Column="1"
-                Width="100"
-                Content="ADD"/>
+
+            <StackPanel Margin="0,20,0,0">
+
+                <TextBox Name="TbNewTask" 
+                   TextChanged="TbNewTask_TextChanged"
+                   materialDesign:HintAssist.Hint="Add a new task" 
+                   Margin="5,0,20,0"
+                   Height="30" 
+                   Padding="5"  
+                   Style="{DynamicResource MaterialDesignFloatingHintTextBox}" >
+                    <TextBox.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontSize" Value="14" />
+                            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+                <TextBlock Name="TbErrorNewTask" 
+                     Text="" 
+                     Foreground="Red" 
+                     FontSize="12" 
+                     Margin="4,0,0,0" 
+                     Padding="5"
+                     Visibility="Visible" />
+              </StackPanel>
+                    <Button Name="BtnAddTask"
+                            Click="BtnAddTask_Click"
+                        Grid.Column="1"
+                        Width="100"
+                        Content="ADD"/>         
         </Grid>
 
         <StackPanel Grid.Row="2" Orientation="Vertical">
             <Label Padding="15, 10" Content="Tasks" Background="{DynamicResource MaterialDesign.Brush.Primary.Light}"/>
+
             <DataGrid 
+                VerticalScrollBarVisibility="Auto"
+                MaxHeight="300"
                 ItemsSource="{Binding Tasks}"
                 HorizontalAlignment="Stretch"
                 CanUserAddRows="False"
@@ -73,9 +97,11 @@
                     <DataGridTextColumn 
                         Width="*"
                         Header="Name"
-                        Binding="{Binding Name}"/>
+                        Binding="{Binding Name}"
+                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"/>
                 </DataGrid.Columns>
             </DataGrid>
+            
         </StackPanel>
     </Grid>
 </UserControl>

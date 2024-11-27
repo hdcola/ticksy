@@ -15,10 +15,10 @@
             </Grid.ColumnDefinitions>
 
             <Label FontSize="16" FontWeight="Bold" Grid.Column="0">Projects</Label>
-            <Button Name="BtnCreateProject" Content="Create new project"  Grid.Column="1" HorizontalAlignment="Right" Height="34" Width="150" FontSize="14"/>
+            <Button Name="BtnCreateProject" Content="Create new project" Click="BtnCreateProject_Click" Grid.Column="1" HorizontalAlignment="Right" Height="34" Width="150" FontSize="14"/>
         </Grid>
 
-        <Grid Margin="0,20,0,0">
+        <Grid Margin="0,20,0,20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
@@ -27,9 +27,10 @@
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="120"/>
             </Grid.ColumnDefinitions>
-            <Label Content="Active or Archived">
-
-            </Label>
+            <ComboBox Margin="15,0,15,0">
+                <ComboBoxItem IsSelected="True">Active</ComboBoxItem>
+                <ComboBoxItem>Archived</ComboBoxItem>
+            </ComboBox>
             <TextBox Name="TbSearch" 
            materialDesign:HintAssist.Hint="Search"
            VerticalAlignment="Center" 
@@ -53,25 +54,45 @@
           Style="{DynamicResource MaterialDesignRaisedButton}" />
         </Grid>
 
-        <ListView Name="LvProjects" Margin="0,10,0,0">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Name}" />
-
-                    <GridViewColumn Header="Description" Width="150" DisplayMemberBinding="{Binding Description}" />
-
-                    <GridViewColumn Header="Tracked" Width="120">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding TotalTrackedHours, StringFormat='F2'}" HorizontalAlignment="Center" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-
-                    <GridViewColumn Header="Amount" Width="140" DisplayMemberBinding="{Binding Amount}" />
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <StackPanel Grid.Row="2" Orientation="Vertical">
+            <Label Padding="15, 10" Content="Projects" Background="{DynamicResource MaterialDesign.Brush.Primary.Light}"/>
+            <DataGrid 
+                 VerticalScrollBarVisibility="Auto"
+                 MaxHeight="300"
+                 ItemsSource="{Binding ProjectSummaries}"
+                 HorizontalAlignment="Stretch"
+                 CanUserAddRows="False"
+                 AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn 
+                         Width="*"
+                         Header="Name"
+                         Binding="{Binding Name}"
+                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
+                        />
+                    <DataGridTextColumn 
+                         Width="*"
+                         Header="Description"
+                         Binding="{Binding Description}"
+                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"/>
+                    <DataGridTextColumn 
+                         Width="*"
+                         Header="Tracked hours" 
+                         IsReadOnly="True"
+                         Binding="{Binding TotalTrackedHours, StringFormat='F2'}"/>
+                    <DataGridTextColumn 
+                         Width="*"
+                         Header="Rate (CAD)"
+                         Binding="{Binding HourlyRate}"
+                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"/>
+                    <DataGridTextColumn 
+                         Width="*"
+                         Header="Amount (CAD)"
+                         IsReadOnly="True"
+                         Binding="{Binding Amount}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
 
 
 

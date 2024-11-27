@@ -7,64 +7,126 @@
         xmlns:local="clr-namespace:ticksy.Dialogs"
         mc:Ignorable="d" ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
-        Title="Create new project" Height="350" Width="600">
-    <Grid>
-        <TabControl TabStripPlacement="Left" Style="{DynamicResource MaterialDesignTabControl}">
-            <TabItem Name="TbGeneral" Header="General">
-                <TabItem.Content>
-                    <StackPanel Margin="16">
-                        <TextBlock Text="Project Name" 
-                               Margin="20,0,0,8" 
-                               FontWeight="Bold" FontSize="14"/>
-                        <TextBox Width="380" 
-                             Height="44" 
-                             Padding="10"
-                             FontSize="16"
-                             Style="{DynamicResource MaterialDesignOutlinedTextBox}" 
-                             Margin="20,0,20,20" HorizontalAlignment="Left"/>
+        Title="Create new project" Height="350" Width="500">
+    <Grid Margin="50,20,50,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
 
-                        <TextBlock Text="Description" 
-                               Margin="20,0,0,8" 
-                               FontWeight="Bold" FontSize="14" />
-                        <TextBox Width="380" 
-                             Height="100" 
-                             Padding="10"
-                             FontSize="14"
-                             TextWrapping="Wrap" 
-                             AcceptsReturn="True" 
-                             VerticalScrollBarVisibility="Auto" 
-                             Style="{DynamicResource MaterialDesignOutlinedTextBox}" HorizontalAlignment="Left" Margin="20,0,0,0" />
-                    </StackPanel>
-                </TabItem.Content>
-            </TabItem>
+        <Label Content="Project information" Grid.Row="0" FontSize="16" FontWeight="Bold"></Label>
+        <StackPanel VerticalAlignment="Center" Grid.Row="1" Margin="0,0,0,5">
+            <Border CornerRadius="4" 
+                    Padding="4">
+                <TextBox Name="TbProjectName" 
+                        materialDesign:HintAssist.Hint="Project Name" 
+                        TextChanged="TbName_TextChanged"
+                        Height="24" 
+                        Padding="4,0" 
+                        VerticalAlignment="Top" 
+                        Style="{DynamicResource MaterialDesignFloatingHintTextBox}" >
+                    <TextBox.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontSize" Value="14" />
+                            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+            </Border>
 
-            <TabItem Name="TbBilling" Header="Billing">
-                <TabItem.Content>
-                    <StackPanel Margin="16">
-                        <TextBlock Text="Hourly Rate" 
-                               Margin="20,0,0,8" 
-                               FontWeight="Bold" FontSize="14" />
-                        <StackPanel Orientation="Horizontal">
-                            <TextBox Width="100" 
-                                 Height="44" 
-                                 Padding="10"
-                                 FontSize="16"
-                                 Style="{DynamicResource MaterialDesignOutlinedTextBox}" Margin="20,0,0,0">
-                            </TextBox>
-                            <TextBlock Text="CAD" 
-                                   VerticalAlignment="Center" 
-                                   Margin="8,0,0,0" />
-                        </StackPanel>
-                    </StackPanel>
-                </TabItem.Content>
-            </TabItem>
-        </TabControl>
-        <Button Content="Save"
+            <TextBlock Name="TbErrorName" 
+                        Text="" 
+                        Foreground="Red" 
+                        FontSize="12" 
+                        Margin="4,0,0,0" 
+                        Visibility="Visible" />
+        </StackPanel>
+
+        <StackPanel VerticalAlignment="Center" Grid.Row="2" Margin="0,0,0,5">
+            <Border CornerRadius="4" 
+                    Padding="4">
+                <TextBox Name="TbProjectDescription" 
+                        materialDesign:HintAssist.Hint="Project Description" 
+                         TextChanged="TbProjectDescription_TextChanged"
+                        Height="24" 
+                        Padding="4,0" 
+                        VerticalAlignment="Top" 
+                        Style="{DynamicResource MaterialDesignFloatingHintTextBox}" >
+                    <TextBox.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontSize" Value="14" />
+                            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+            </Border>
+
+            <TextBlock Name="TbErrorDescription" 
+                        Text="" 
+                        Foreground="Red" 
+                        FontSize="12" 
+                        Margin="4,0,0,0" 
+                        Visibility="Visible" />
+        </StackPanel>
+
+
+        <StackPanel VerticalAlignment="Center" Grid.Row="3" Margin="0,0,0,5">
+            <StackPanel Orientation="Horizontal">
+                <Border CornerRadius="4" 
+                                      Padding="4">
+                    <TextBox Name="TbHourlyRate" PreviewTextInput="TbHourlyRate_PreviewTextInput"
+                            materialDesign:HintAssist.Hint="Hourly rate"
+                             TextChanged="TbHourlyRate_TextChanged"
+                            Width="120"
+                            Height="24" 
+                            Padding="4,0" 
+                            VerticalAlignment="Top" 
+                            Style="{DynamicResource MaterialDesignFloatingHintTextBox}" HorizontalAlignment="Left" Margin="0,0,10,0" >
+                        <TextBox.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="FontSize" Value="14" />
+                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                </Border>
+
+                <TextBlock Text="CAD" VerticalAlignment="Center"/>
+
+            </StackPanel>
+
+
+            <TextBlock Name="TbErrorHourlyRate" 
+                    Text="" 
+                    Foreground="Red" 
+                    FontSize="12" 
+                    Margin="4,0,0,0" 
+                    Visibility="Visible" />
+
+        </StackPanel>
+
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" Margin="0,0,0,5">
+
+            <Button Name="BtnSave"
+                Content="Save"
+                Click="BtnSave_Click"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Margin="124,270,0,0"
                 Width="100"
                 Height="40"
                 Style="{DynamicResource MaterialDesignRaisedButton}"/>
+
+            <Button Content="Cancel"
+                IsCancel="True"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Width="100"
+                Height="40"
+                Style="{DynamicResource MaterialDesignRaisedButton}" Margin="30,0,0,0"/>
+        </StackPanel>
     </Grid>
 </Window>
